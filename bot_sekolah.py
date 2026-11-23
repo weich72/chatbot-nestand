@@ -5,7 +5,7 @@ import base64
 import os
 import time
 
-# 1. KUNCI API GOOGLE AI STUDIO (TEMPELKAN KEMBALI API KEY BARU PAK WEI DI SINI!)
+# 1. KUNCI API GOOGLE AI STUDIO (AMAN MENGGUNAKAN SECRETS STREAMLIT)
 KUNCI_AI = st.secrets["GEMINI_API_KEY"]
 
 # Mengatur tampilan halaman web
@@ -137,8 +137,8 @@ with st.sidebar:
     st.markdown("<p style='text-align:center; color:#7dd3fc;'><b>NESTAND</b> • Kab. Sumedang</p>", unsafe_allow_html=True)
     st.info("🌄 *Dari Bukit Menebar Cahaya — MENCRANG!*")
     st.markdown("---")
-    st.markdown("**Visi Sekolah: GENIUS – AKBAR**")
-    st.caption("• **GENIUS:** Gigih, Elegan, Nyunda, Inovatif, Unggul, Sehat\n• **AKBAR:** Aktif, Kreatif, Bersama, Adab, Religius")
+    st.markdown("**Visi Sekolah: AKBAR**")
+    st.caption("• **AKBAR:** Aktif, Kreatif, Bersama, Adab, Religius")
     st.markdown("---")
     if st.button("🗑️ Bersihkan Obrolan", use_container_width=True):
         st.session_state.messages = [
@@ -158,7 +158,7 @@ st.markdown(
         <div class="hero-text">
             <h1 class="hero-title">Asisten Virtual Nestand AKBAR</h1>
             <div class="hero-sub">Pusat Informasi Digital SMP Negeri 1 Tanjungmedar • Sumedang</div>
-            <div class="hero-badge">✨ GENIUS dalam Prestasi • AKBAR dalam Karakter ✨</div>
+            <div class="hero-badge">✨ AKBAR dalam Prestasi & Karakter • MENCRANG ✨</div>
         </div>
     </div>
     """,
@@ -182,11 +182,10 @@ Jawablah semua pertanyaan siswa, guru, orang tua, atau tamu sekolah berdasarkan 
 - Gambaran Data Murid (referensi arsip): Sekitar 291 murid (Kelas VII: 101 murid dengan pembahasan 4 rombel; mencakup kelas VII, VIII, dan IX).
 
 2. VISI, JARGON, DAN SEMBOYAN:
-- Visi Utama (GENIUS - AKBAR):
-  "Pusat penggerak kepemimpinan literasi dan pemberdayaan insan didik yang gigih, elegan, nyunda, inovatif, unggul, sehat (GENIUS) berbasis sains, teknologi, dan Al-Qur'an."
-- Kepanjangan GENIUS: Gigih, Elegan, Nyunda, Inovatif, Unggul, Sehat.
+- Visi Utama (AKBAR):
+  "Pusat penggerak kepemimpinan literasi dan pemberdayaan insan didik yang Aktif, Kreatif, Bersama, ber-Adab, dan Religius (AKBAR) berbasis sains, teknologi, dan Al-Qur'an."
 - Kepanjangan AKBAR: Aktif, Kreatif, Bersama, Adab, Religius.
-- Jargon Identitas: "GENIUS dalam prestasi, AKBAR dalam karakter."
+- Jargon Identitas: "AKBAR dalam prestasi dan karakter."
 - Jargon Sekolah: "DARI BUKIT MENEBAR CAHAYA — MENCRANG".
 - Semboyan Budaya Kerja: "PROVE WE EXIST BECAUSE OF WORKING".
 - Identitas Pertumbuhan: Internal Growth (Nisita Cala Sinudarsana), External Growth (Kebhinekaan Global), nilai Kreatif, Gotong Royong, dan Mandiri.
@@ -238,8 +237,8 @@ col1, col2, col3, col4 = st.columns(4)
 pertanyaan_tombol = None
 if col1.button("🏫 Profil & Alamat", use_container_width=True):
     pertanyaan_tombol = "Di mana alamat lengkap dan bagaimana profil SMP Negeri 1 Tanjungmedar?"
-if col2.button("✨ Visi GENIUS–AKBAR", use_container_width=True):
-    pertanyaan_tombol = "Jelaskan visi GENIUS dan nilai karakter AKBAR di NESTAND!"
+if col2.button("✨ Visi AKBAR", use_container_width=True):
+    pertanyaan_tombol = "Jelaskan visi dan nilai karakter AKBAR di NESTAND!"
 if col3.button("⭐ Program STAR", use_container_width=True):
     pertanyaan_tombol = "Apa saja kegiatan dan komunitas dalam program STAR?"
 if col4.button("💻 Digitalisasi Sekolah", use_container_width=True):
