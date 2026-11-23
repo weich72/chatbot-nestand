@@ -33,12 +33,12 @@ def muat_knowledge_base():
             return f.read()
     return "Kamu adalah Asisten Virtual Resmi SMP Negeri 1 Tanjungmedar (NESTAND AKBAR)."
 
-# FUNGSI TAMPILAN GLASSMORPHISM + WALLPAPER BENING + LOGO
+# FUNGSI TAMPILAN RAMPING + GLASSMORPHISM + WALLPAPER TERBUKA LEGA
 def pasang_tampilan_mewah():
     url_wallpaper = gambar_ke_base64("wallpaper")
     if url_wallpaper:
         bg_css = f"""
-            background-image: linear-gradient(rgba(10, 25, 47, 0.08), rgba(15, 23, 42, 0.15)),
+            background-image: linear-gradient(rgba(10, 25, 47, 0.05), rgba(15, 23, 42, 0.12)),
                               url("{url_wallpaper}");
             background-size: cover;
             background-position: center;
@@ -55,34 +55,46 @@ def pasang_tampilan_mewah():
             color: #f8fafc;
         }}
         header[data-testid="stHeader"] {{
-            background: rgba(10, 25, 47, 0.2) !important;
-            backdrop-filter: blur(4px);
+            background: transparent !important;
         }}
+        /* MERAMPINGKAN KONTAINER UTAMA AGAR WALLPAPER TERLIHAT LUAS */
+        .block-container {{
+            max-width: 720px !important;
+            padding-top: 2.2rem !important;
+            padding-bottom: 5rem !important;
+            margin: 0 auto !important;
+        }}
+        /* MERAMPINGKAN KOTAK KETIK PESAN DI BAWAH */
         div[data-testid="stBottom"] {{
             background: transparent !important;
         }}
+        div[data-testid="stBottom"] > div {{
+            max-width: 720px !important;
+            margin: 0 auto !important;
+            background: transparent !important;
+        }}
         section[data-testid="stSidebar"] {{
-            background: rgba(15, 23, 42, 0.84) !important;
+            background: rgba(15, 23, 42, 0.85) !important;
             backdrop-filter: blur(14px);
             border-right: 1px solid rgba(56, 189, 248, 0.35);
         }}
         .hero-box {{
-            background: rgba(15, 23, 42, 0.75);
-            backdrop-filter: blur(14px);
+            background: rgba(15, 23, 42, 0.72);
+            backdrop-filter: blur(12px);
             border: 1px solid rgba(125, 211, 252, 0.45);
-            border-radius: 18px;
-            padding: 20px 28px;
-            margin-bottom: 18px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+            border-radius: 16px;
+            padding: 14px 20px;
+            margin-bottom: 14px;
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.3);
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 20px;
+            gap: 16px;
             flex-wrap: wrap;
         }}
         .hero-logo {{
-            width: 82px;
-            height: 82px;
+            width: 64px;
+            height: 64px;
             object-fit: contain;
             filter: drop-shadow(0 4px 10px rgba(0,0,0,0.4));
         }}
@@ -90,7 +102,7 @@ def pasang_tampilan_mewah():
             text-align: left;
         }}
         .hero-title {{
-            font-size: 1.95rem;
+            font-size: 1.55rem;
             font-weight: 800;
             background: linear-gradient(90deg, #38bdf8, #ffffff, #7dd3fc);
             -webkit-background-clip: text;
@@ -100,33 +112,57 @@ def pasang_tampilan_mewah():
         }}
         .hero-sub {{
             color: #e2e8f0;
-            font-size: 0.96rem;
-            margin-top: 4px;
+            font-size: 0.86rem;
+            margin-top: 2px;
         }}
         .hero-badge {{
             display: inline-block;
-            margin-top: 8px;
-            padding: 4px 14px;
+            margin-top: 6px;
+            padding: 3px 12px;
             border-radius: 999px;
             background: rgba(56, 189, 248, 0.25);
             border: 1px solid rgba(125, 211, 252, 0.55);
             color: #e0f2fe;
-            font-size: 0.82rem;
+            font-size: 0.75rem;
             font-weight: 600;
         }}
+        /* GELEMBUNG CHAT RAMPING & TRANSPARAN ELEGAN */
         div[data-testid="stChatMessage"] {{
-            background: rgba(15, 23, 42, 0.78) !important;
-            backdrop-filter: blur(12px);
+            background: rgba(15, 23, 42, 0.74) !important;
+            backdrop-filter: blur(10px);
             border: 1px solid rgba(148, 163, 184, 0.3);
             border-radius: 16px;
-            padding: 14px 18px;
-            margin-bottom: 10px;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+            padding: 10px 16px;
+            margin-bottom: 8px;
+            width: fit-content;
+            max-width: 88%;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+        }}
+        /* PESAN USER OTOMATIS RATA KANAN SEPERTI WHATSAPP */
+        div[data-testid="stChatMessage"]:has(div[data-testid="chatAvatarIcon-user"]) {{
+            margin-left: auto;
+            background: rgba(30, 58, 138, 0.78) !important;
+            border-color: rgba(96, 165, 250, 0.45);
         }}
         div[data-testid="stChatInput"] {{
-            background: rgba(15, 23, 42, 0.9) !important;
+            background: rgba(15, 23, 42, 0.85) !important;
+            backdrop-filter: blur(12px);
             border-radius: 14px;
             border: 1px solid rgba(56, 189, 248, 0.5);
+        }}
+        /* TOMBOL CEPAT LEBIH COMPACT */
+        div.stButton > button {{
+            background: rgba(15, 23, 42, 0.75) !important;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(125, 211, 252, 0.4) !important;
+            color: #f8fafc !important;
+            font-size: 0.8rem !important;
+            padding: 0.35rem 0.5rem !important;
+            border-radius: 10px !important;
+        }}
+        div.stButton > button:hover {{
+            border-color: #38bdf8 !important;
+            background: rgba(30, 58, 138, 0.85) !important;
         }}
         </style>
         """,
@@ -139,7 +175,7 @@ url_logo = gambar_ke_base64("logo")
 # PANEL SAMPING (SIDEBAR) DENGAN LOGO & PROFIL SEKOLAH
 with st.sidebar:
     if url_logo:
-        st.markdown(f'<div style="text-align:center;"><img src="{url_logo}" width="95"></div>', unsafe_allow_html=True)
+        st.markdown(f'<div style="text-align:center;"><img src="{url_logo}" width="90"></div>', unsafe_allow_html=True)
     st.markdown("<h3 style='text-align:center; margin-bottom:0;'>SMPN 1 Tanjungmedar</h3>", unsafe_allow_html=True)
     st.markdown("<p style='text-align:center; color:#7dd3fc;'><b>NESTAND AKBAR</b> • Kab. Sumedang</p>", unsafe_allow_html=True)
     st.info("🎓 *Aktif • Kreatif • Bersama • Adab • Religius*")
@@ -151,13 +187,13 @@ with st.sidebar:
         st.session_state.messages = [
             {
                 "role": "assistant",
-                "content": "Sampurasun & Assalamu'alaikum! Selamat datang di layanan informasi digital **SMP Negeri 1 Tanjungmedar (NESTAND AKBAR)**. Ada yang bisa saya bantu seputar profil sekolah, jadwal, lab komputer, atau materi Informatika hari ini? 😊"
+                "content": "Sampurasun & Assalamu'alaikum! Selamat datang di layanan informasi digital **SMP Negeri 1 Tanjungmedar (NESTAND AKBAR)**. Ada yang bisa saya bantu hari ini? 😊"
             }
         ]
         st.rerun()
 
 # HEADER UTAMA DENGAN LOGO SEKOLAH
-logo_html = f'<img src="{url_logo}" class="hero-logo">' if url_logo else '<span style="font-size:3rem;">🎓</span>'
+logo_html = f'<img src="{url_logo}" class="hero-logo">' if url_logo else '<span style="font-size:2.5rem;">🎓</span>'
 st.markdown(
     f"""
     <div class="hero-box">
@@ -197,7 +233,7 @@ if "messages" not in st.session_state:
     st.session_state.messages = [
         {
             "role": "assistant",
-            "content": "Sampurasun & Assalamu'alaikum! Selamat datang di layanan informasi digital **SMP Negeri 1 Tanjungmedar (NESTAND AKBAR)**. Ada yang bisa saya bantu seputar profil sekolah, jadwal, lab komputer, atau materi Informatika hari ini? 😊"
+            "content": "Sampurasun & Assalamu'alaikum! Selamat datang di layanan informasi digital **SMP Negeri 1 Tanjungmedar (NESTAND AKBAR)**. Ada yang bisa saya bantu hari ini? 😊"
         }
     ]
 
@@ -219,7 +255,7 @@ for msg in st.session_state.messages:
         st.markdown(msg["content"])
 
 # Menangkap input dari ketikan manual ATAU klik tombol cepat
-pertanyaan_ketik = st.chat_input("Ngobrol atau tanyakan apa saja seputar SMP Negeri 1 Tanjungmedar...")
+pertanyaan_ketik = st.chat_input("Tanyakan seputar SMPN 1 Tanjungmedar...")
 pertanyaan = pertanyaan_tombol if pertanyaan_tombol else pertanyaan_ketik
 
 if pertanyaan:
