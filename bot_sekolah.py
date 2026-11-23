@@ -99,7 +99,7 @@ def pasang_tampilan_mewah():
             filter: drop-shadow(0 4px 10px rgba(0,0,0,0.4));
         }}
         .hero-text {{
-            text-align: left;
+            text-align: center;
         }}
         .hero-title {{
             font-size: 1.55rem;
@@ -304,3 +304,4 @@ if pertanyaan:
                 st.session_state.messages.append({"role": "assistant", "content": jawaban})
             else:
                 st.error(f"Jalur AI sedang padat sementara. Coba klik/kirim ulang sebentar lagi ya! ({error_terakhir})")
+
