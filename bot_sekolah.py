@@ -187,7 +187,7 @@ with st.sidebar:
         st.session_state.messages = [
             {
                 "role": "assistant",
-                "content": "Sampurasun & Assalamu'alaikum! Selamat datang di layanan informasi digital **SMP Negeri 1 Tanjungmedar (NESTAND AKBAR)**. Ada yang bisa saya bantu hari ini? 😊"
+                "content": "Assalamu'alaikum!, Sampurasun..., Selamat datang di layanan informasi digital **SMP Negeri 1 Tanjungmedar (NESTAND AKBAR)**. Ada yang bisa saya bantu hari ini? 😊"
             }
         ]
         st.rerun()
@@ -317,6 +317,7 @@ if pertanyaan:
                 st.session_state.messages.append({"role": "assistant", "content": jawaban})
             else:
                 st.error(f"Jalur AI sedang padat sementara. Coba klik/kirim ulang sebentar lagi ya! ({error_terakhir})")
+
 
 
 
