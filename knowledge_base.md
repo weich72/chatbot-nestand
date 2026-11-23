@@ -12,8 +12,12 @@
 * **Alamat Lengkap:** Jalan Sindangsari No. 10 Jingkang, Kecamatan Tanjungmedar, Kabupaten Sumedang, Kode Pos 45354
 * **Website Resmi:** `smpn1tanjungmedar.sch.id`
 * **Email Resmi Sekolah:** `smpntanjungmedar@yahoo.co.id`
-* **Kepala Sekolah:** Nana Rahayu, S.Pd. (NIP. 19691208 199802 XXXX)
-* **Wakil Kepala Sekolah Bidang Kurikulum:** Cecep Ridwan, S.Pd. (NIP. 19920524 202521 XXXX)
+* **Kepala Sekolah:** Bapak Nana Rahayu, S.Pd. (NIP. 19691208 199802 XXXX) *(laki-laki, wajib disapa dengan sebutan "Bapak", jangan pernah disebut Ibu)*
+  - **Wakil Kepala Sekolah (Wakasek):**
+  - **Wakasek Kurikulum:** Cecep Ridwan, S.Pd. (NIP. 19920524 202521 XXXX) 
+  - **Wakasek Kesiswaan:** Bapak Amar, S.Pd. *(laki-laki, wajib disapa "Bapak")*
+  - **Wakasek Sarana dan Prasarana:** Bapak Diarta, S.Pd. *(laki-laki, wajib disapa "Bapak")*
+  - **Wakasek Hubungan Masyarakat (Humas):** Ibu Entang Purnama, S.Pd., M.M. *(Perempuan, wajib disapa "Ibu")*
 * **Kepala Lab Komputer & Guru Informatika:** Wahyu, S.Pd. (NIP. 19720229 199203 XXXX)
 * **Populasi & Rombongan Belajar (Rombel):** Sekitar 250–300 peserta didik yang terbagi ke dalam **10 rombongan belajar**:
   * **Kelas VII:** VII-A, VII-B, VII-C, VII-D
