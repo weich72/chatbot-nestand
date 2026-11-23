@@ -26,6 +26,13 @@ def gambar_ke_base64(nama_dasar):
             return f"data:image/{tipe};base64,{data}"
     return None
 
+# FUNGSI MEMBACA BASIS PENGETAHUAN DARI FILE knowledge_base.md
+def muat_knowledge_base():
+    if os.path.exists("knowledge_base.md"):
+        with open("knowledge_base.md", "r", encoding="utf-8") as f:
+            return f.read()
+    return "Kamu adalah Asisten Virtual Resmi SMP Negeri 1 Tanjungmedar (NESTAND AKBAR)."
+
 # FUNGSI TAMPILAN GLASSMORPHISM + WALLPAPER BENING + LOGO
 def pasang_tampilan_mewah():
     url_wallpaper = gambar_ke_base64("wallpaper")
@@ -134,17 +141,17 @@ with st.sidebar:
     if url_logo:
         st.markdown(f'<div style="text-align:center;"><img src="{url_logo}" width="95"></div>', unsafe_allow_html=True)
     st.markdown("<h3 style='text-align:center; margin-bottom:0;'>SMPN 1 Tanjungmedar</h3>", unsafe_allow_html=True)
-    st.markdown("<p style='text-align:center; color:#7dd3fc;'><b>NESTAND</b> • Kab. Sumedang</p>", unsafe_allow_html=True)
-    st.info("🌄 *Dari Bukit Menebar Cahaya — MENCRANG!*")
+    st.markdown("<p style='text-align:center; color:#7dd3fc;'><b>NESTAND AKBAR</b> • Kab. Sumedang</p>", unsafe_allow_html=True)
+    st.info("🎓 *Aktif • Kreatif • Bersama • Adab • Religius*")
     st.markdown("---")
-    st.markdown("**Visi Sekolah: AKBAR**")
+    st.markdown("**Visi Sekolah: NESTAND AKBAR**")
     st.caption("• **AKBAR:** Aktif, Kreatif, Bersama, Adab, Religius")
     st.markdown("---")
     if st.button("🗑️ Bersihkan Obrolan", use_container_width=True):
         st.session_state.messages = [
             {
                 "role": "assistant",
-                "content": "Sampurasun & Halo! Selamat datang di layanan informasi digital **SMP Negeri 1 Tanjungmedar (NESTAND)**. *Dari Bukit Menebar Cahaya — MENCRANG!* Ada yang bisa saya bantu hari ini? 😊"
+                "content": "Sampurasun & Assalamu'alaikum! Selamat datang di layanan informasi digital **SMP Negeri 1 Tanjungmedar (NESTAND AKBAR)**. Ada yang bisa saya bantu seputar profil sekolah, jadwal, lab komputer, atau materi Informatika hari ini? 😊"
             }
         ]
         st.rerun()
@@ -158,7 +165,7 @@ st.markdown(
         <div class="hero-text">
             <h1 class="hero-title">Asisten Virtual Nestand AKBAR</h1>
             <div class="hero-sub">Pusat Informasi Digital SMP Negeri 1 Tanjungmedar • Sumedang</div>
-            <div class="hero-badge">✨ AKBAR dalam Prestasi & Karakter • MENCRANG ✨</div>
+            <div class="hero-badge">✨ Aktif • Kreatif • Bersama • Adab • Religius ✨</div>
         </div>
     </div>
     """,
@@ -168,46 +175,8 @@ st.markdown(
 # Menghubungkan ke otak AI Google
 client = genai.Client(api_key=KUNCI_AI)
 
-# 2. BUKU INGATAN RESMI SMP NEGERI 1 TANJUNGMEDAR (NESTAND)
-info_sekolah = """
-Kamu adalah Asisten Virtual AI Resmi yang sangat cerdas, ramah, luwes, hangat, dan komunikatif untuk SMP Negeri 1 Tanjungmedar (NESTAND).
-Jawablah semua pertanyaan siswa, guru, orang tua, atau tamu sekolah berdasarkan arsip resmi berikut:
-
-1. IDENTITAS SEKOLAH:
-- Nama Sekolah: SMP Negeri 1 Tanjungmedar (Nama populer: NESTAND - Negeri 1 Tanjungmedar).
-- Alamat: Jalan Sindangsari No. 10, Desa Jingkang, Kecamatan Tanjungmedar, Kabupaten Sumedang, Provinsi Jawa Barat.
-- Karakter Wilayah: Pedesaan, perbukitan/lereng gunung, dikelilingi lahan pertanian dan perkebunan (cabai, kencur, singkong).
-- Kepala Sekolah: Bapak Nana Rahayu, S.Pd.
-- Guru Informatika & Pengembang Digitalisasi Sekolah: Bapak Wahyu, S.Pd (Pa Wei).
-- Gambaran Data Murid (referensi arsip): Sekitar 291 murid (Kelas VII: 101 murid dengan pembahasan 4 rombel; mencakup kelas VII, VIII, dan IX).
-
-2. VISI, JARGON, DAN SEMBOYAN:
-- Visi Utama (AKBAR):
-  "Pusat penggerak kepemimpinan literasi dan pemberdayaan insan didik yang Aktif, Kreatif, Bersama, ber-Adab, dan Religius (AKBAR) berbasis sains, teknologi, dan Al-Qur'an."
-- Kepanjangan AKBAR: Aktif, Kreatif, Bersama, Adab, Religius.
-- Jargon Identitas: "AKBAR dalam prestasi dan karakter."
-- Jargon Sekolah: "DARI BUKIT MENEBAR CAHAYA — MENCRANG".
-- Semboyan Budaya Kerja: "PROVE WE EXIST BECAUSE OF WORKING".
-- Identitas Pertumbuhan: Internal Growth (Nisita Cala Sinudarsana), External Growth (Kebhinekaan Global), nilai Kreatif, Gotong Royong, dan Mandiri.
-
-3. PROGRAM UNGGULAN & KEGIATAN SEKOLAH:
-- Program STAR:
-  * S (Sport): Olahraga.
-  * T (Science / Technology): Sains & Teknologi (komunitas JAQ-IT, Olimpiade Informatika).
-  * A (Art): Seni & Budaya (Sundanese Ethnic Music Class).
-  * R (Religious): Keagamaan (komunitas IRMALAT).
-- Ekstrakurikuler & Komunitas: Pramuka, Paskibra, PMR, OSIS, JONEST, IRMALAT, JAQ-IT, Sundanese Ethnic Music Class, dan Olimpiade.
-- Program NISCALA: KIN, K3N, KKBN, NDLC, dan NMB.
-- Kurikulum & Metode: Kurikulum Operasional Mandiri Berubah, Pembelajaran Mendalam (Deep Learning), PESAT Method, KUKA, TUMBUH (growth mindset), E-library, Penguatan Literasi & Numerasi, serta pengembangan menuju ISO 9001:2000.
-- Projek Pembelajaran & Karakter (P5 & NSR):
-  * P5 Gaya Hidup Berkelanjutan: Budidaya tanaman cabai di lahan kosong sekolah.
-  * Projek Kewirausahaan Kelas VIII: Pembuatan kipas dari bambu.
-  * Program NSR: Kunjungan dunia usaha menjahit ke Penjahit Neng Susi di Cimayang.
-- Kemitraan: Puskesmas dan GENRE Sumedang.
-
-4. DIGITALISASI & INOVASI SEKOLAH:
-- Pemanfaatan LKPD digital (TTS interaktif), AI, Google Workspace, akun belajar.id, serta pengembangan Aplikasi Digital Nestand dan Absensi Digital Nestand.
-"""
+# 2. MEMUAT BUKU INGATAN RESMI DARI FILE knowledge_base.md
+info_sekolah = muat_knowledge_base()
 
 # OTOMATIS MENDETEKSI SEMUA MODEL AI YANG TERSEDIA DI AKUN PA WEI
 @st.cache_data(ttl=3600)
@@ -228,21 +197,21 @@ if "messages" not in st.session_state:
     st.session_state.messages = [
         {
             "role": "assistant",
-            "content": "Sampurasun & Halo! Selamat datang di layanan informasi digital **SMP Negeri 1 Tanjungmedar (NESTAND)**. *Dari Bukit Menebar Cahaya — MENCRANG!* Ada yang bisa saya bantu hari ini? 😊"
+            "content": "Sampurasun & Assalamu'alaikum! Selamat datang di layanan informasi digital **SMP Negeri 1 Tanjungmedar (NESTAND AKBAR)**. Ada yang bisa saya bantu seputar profil sekolah, jadwal, lab komputer, atau materi Informatika hari ini? 😊"
         }
     ]
 
 # TOMBOL PERTANYAAN CEPAT (QUICK PROMPTS)
 col1, col2, col3, col4 = st.columns(4)
 pertanyaan_tombol = None
-if col1.button("🏫 Profil & Alamat", use_container_width=True):
-    pertanyaan_tombol = "Di mana alamat lengkap dan bagaimana profil SMP Negeri 1 Tanjungmedar?"
-if col2.button("✨ Visi AKBAR", use_container_width=True):
-    pertanyaan_tombol = "Jelaskan visi dan nilai karakter AKBAR di NESTAND!"
-if col3.button("⭐ Program STAR", use_container_width=True):
-    pertanyaan_tombol = "Apa saja kegiatan dan komunitas dalam program STAR?"
-if col4.button("💻 Digitalisasi Sekolah", use_container_width=True):
-    pertanyaan_tombol = "Apa saja inovasi digitalisasi dan projek P5 yang ada di NESTAND?"
+if col1.button("🏫 Profil & Pimpinan", use_container_width=True):
+    pertanyaan_tombol = "Siapa Kepala Sekolah dan Wakasek Kurikulum SMP Negeri 1 Tanjungmedar sekarang, serta di mana alamat lengkapnya?"
+if col2.button("📅 Jadwal & Wali Kelas", use_container_width=True):
+    pertanyaan_tombol = "Bagaimana jadwal kegiatan harian sekolah dan daftar wali kelas tahun ajaran 2026/2027?"
+if col3.button("💻 Lab & eksKomp", use_container_width=True):
+    pertanyaan_tombol = "Apa saja fasilitas Laboratorium Komputer dan program ekstrakurikuler eksKomp Nestand?"
+if col4.button("📚 Materi Informatika", use_container_width=True):
+    pertanyaan_tombol = "Apa saja peta materi pelajaran Informatika untuk Kelas VII, VIII, dan IX?"
 
 # Menampilkan riwayat obrolan di layar
 for msg in st.session_state.messages:
@@ -283,7 +252,7 @@ if pertanyaan:
                         contents=riwayat_chat,
                         config=types.GenerateContentConfig(
                             system_instruction=info_sekolah,
-                            temperature=0.5
+                            temperature=0.4
                         )
                     )
                     jawaban = respon.text
@@ -299,4 +268,3 @@ if pertanyaan:
                 st.session_state.messages.append({"role": "assistant", "content": jawaban})
             else:
                 st.error(f"Jalur AI sedang padat sementara. Coba klik/kirim ulang sebentar lagi ya! ({error_terakhir})")
-
