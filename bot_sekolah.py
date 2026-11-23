@@ -191,7 +191,20 @@ with st.sidebar:
             }
         ]
         st.rerun()
+    st.markdown("---")
+    st.markdown("**Bagikan & Media Sosial**")
+    
+    # Ganti URL di bawah ini dengan link website Streamlit Pak Wei
+    link_app = "https://TEMPEL-LINK-APP-PAK-WEI-DISINI.streamlit.app"
+    pesan_wa = f"Sampurasun! Yuk tanya-tanya seputar SMP Negeri 1 Tanjungmedar lewat Asisten Virtual Nestand AKBAR di sini: {link_app}"
+    url_wa = f"https://api.whatsapp.com/send?text={pesan_wa.replace(' ', '%20')}"
+    
+    # Ganti username Instagram di bawah dengan akun IG resmi sekolah
+    url_ig = "https://www.instagram.com/smpn1tanjungmedar/"
 
+    st.link_button("📲 Bagikan ke WhatsApp", url_wa, use_container_width=True)
+    st.link_button("📸 Instagram Sekolah", url_ig, use_container_width=True)
+    
 # HEADER UTAMA DENGAN LOGO SEKOLAH
 logo_html = f'<img src="{url_logo}" class="hero-logo">' if url_logo else '<span style="font-size:2.5rem;">🎓</span>'
 st.markdown(
@@ -304,4 +317,5 @@ if pertanyaan:
                 st.session_state.messages.append({"role": "assistant", "content": jawaban})
             else:
                 st.error(f"Jalur AI sedang padat sementara. Coba klik/kirim ulang sebentar lagi ya! ({error_terakhir})")
+
 
