@@ -177,7 +177,7 @@ Jawablah semua pertanyaan siswa, guru, orang tua, atau tamu sekolah berdasarkan 
 - Nama Sekolah: SMP Negeri 1 Tanjungmedar (Nama populer: NESTAND - Negeri 1 Tanjungmedar).
 - Alamat: Jalan Sindangsari No. 10, Desa Jingkang, Kecamatan Tanjungmedar, Kabupaten Sumedang, Provinsi Jawa Barat.
 - Karakter Wilayah: Pedesaan, perbukitan/lereng gunung, dikelilingi lahan pertanian dan perkebunan (cabai, kencur, singkong).
-- Kepala Sekolah: Bapak Dadan Andana.
+- Kepala Sekolah: Bapak Nana Rahayu, S.Pd.
 - Guru Informatika & Pengembang Digitalisasi Sekolah: Bapak Wahyu, S.Pd (Pa Wei).
 - Gambaran Data Murid (referensi arsip): Sekitar 291 murid (Kelas VII: 101 murid dengan pembahasan 4 rombel; mencakup kelas VII, VIII, dan IX).
 
@@ -299,3 +299,4 @@ if pertanyaan:
                 st.session_state.messages.append({"role": "assistant", "content": jawaban})
             else:
                 st.error(f"Jalur AI sedang padat sementara. Coba klik/kirim ulang sebentar lagi ya! ({error_terakhir})")
+
