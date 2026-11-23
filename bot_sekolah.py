@@ -200,7 +200,7 @@ with st.sidebar:
     url_wa = f"https://api.whatsapp.com/send?text={pesan_wa.replace(' ', '%20')}"
     
     # Ganti username Instagram di bawah dengan akun IG resmi sekolah
-    url_ig = "https://www.instagram.com/smpn1tanjungmedar/"
+    url_ig = "https://www.instagram.com/smpn1_tanjungmedar/"
 
     st.link_button("📲 Bagikan ke WhatsApp", url_wa, use_container_width=True)
     st.link_button("📸 Instagram Sekolah", url_ig, use_container_width=True)
@@ -317,5 +317,6 @@ if pertanyaan:
                 st.session_state.messages.append({"role": "assistant", "content": jawaban})
             else:
                 st.error(f"Jalur AI sedang padat sementara. Coba klik/kirim ulang sebentar lagi ya! ({error_terakhir})")
+
 
 
