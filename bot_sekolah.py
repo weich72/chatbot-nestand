@@ -27,7 +27,7 @@ DATA_SEKOLAH = """
 - SK Izin Operasional: 0260/O/1994 (5 Oktober 1994)
 - Waktu Penyelenggaraan: Pagi / 6 hari
 - Biaya & BOS: Tidak memungut iuran (Rp 0/siswa), menerapkan MBS, dan menerima dana BOS
-- Kontak Resmi Sekolah: Telp 081222605793 | Email: smpntanjungmedar@yahoo.co.id
+- Kontak Resmi Sekolah: Telp - | Email: smpntanjungmedar@yahoo.co.id
 - Listrik & Internet: PLN (5.698 Watt) | Akses Internet 50 Mb
 
 === FASILITAS SANITASI & UKS ===
