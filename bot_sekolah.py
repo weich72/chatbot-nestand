@@ -231,12 +231,12 @@ info_sekolah = muat_knowledge_base()
 # DAFTAR MODEL AI CEPAT & CADANGAN ANTI-503
 def cari_daftar_model_ai():
     return [
+        "gemma-4-26b-a4b-it",
+        "gemma-3-27b-it",
         "gemini-2.5-flash-lite",
         "gemini-2.5-flash",
-        "gemma-3-27b-it",
         "gemma-3-12b-it",
-        "gemma-3-4b-it",
-        "gemma-4-26b-a4b-it"
+        "gemma-3-4b-it"
     ]
 
 # 3. MENYIAPKAN INGATAN OBROLAN
