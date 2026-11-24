@@ -84,23 +84,25 @@ def pasang_tampilan_mewah():
             backdrop-filter: blur(12px);
             border: 1px solid rgba(125, 211, 252, 0.45);
             border-radius: 16px;
-            padding: 14px 20px;
+            padding: 18px 20px;
             margin-bottom: 14px;
             box-shadow: 0 6px 24px rgba(0, 0, 0, 0.3);
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 16px;
-            flex-wrap: wrap;
+            text-align: center;
+            gap: 10px;
         }}
         .hero-logo {{
-            width: 64px;
-            height: 64px;
+            width: 68px;
+            height: 68px;
             object-fit: contain;
             filter: drop-shadow(0 4px 10px rgba(0,0,0,0.4));
         }}
         .hero-text {{
             text-align: center;
+            width: 100%;
         }}
         .hero-title {{
             font-size: 1.55rem;
@@ -188,24 +190,22 @@ with st.sidebar:
         st.session_state.messages = [
             {
                 "role": "assistant",
-                "content": "Assalamu'alaikum!, Sampurasun..., Selamat datang di layanan informasi digital **SMP Negeri 1 Tanjungmedar (NESTAND AKBAR)**. Ada yang bisa saya bantu hari ini? 😊"
+                "content": "Assalamu'alaikum Warahmatullahi Wabarakatuh & Sampurasun! Selamat datang di layanan informasi digital **SMP Negeri 1 Tanjungmedar (NESTAND AKBAR)**. Ada yang bisa saya bantu hari ini? 😊"
             }
         ]
         st.rerun()
     st.markdown("---")
     st.markdown("**Bagikan & Media Sosial**")
     
-    # Ganti URL di bawah ini dengan link website Streamlit Pak Wei
-    link_app = "https://TEMPEL-LINK-APP-PAK-WEI-DISINI.streamlit.app"
-    pesan_wa = f"Sampurasun! Yuk tanya-tanya seputar SMP Negeri 1 Tanjungmedar lewat Asisten Virtual Nestand AKBAR di sini: {link_app}"
+    # Ganti URL di bawah ini dengan link website Streamlit Pak Wei jika sudah disalin
+    link_app = "https://https://asisten-nestand.streamlit.app"
+    pesan_wa = f"Assalamu'alaikum Wr. Wb. & Sampurasun! Yuk tanya-tanya seputar SMP Negeri 1 Tanjungmedar lewat Asisten Virtual Nestand AKBAR di sini: {link_app}"
     url_wa = f"https://api.whatsapp.com/send?text={pesan_wa.replace(' ', '%20')}"
-    
-    # Ganti username Instagram di bawah dengan akun IG resmi sekolah
     url_ig = "https://www.instagram.com/smpn1_tanjungmedar/"
 
     st.link_button("📲 Bagikan ke WhatsApp", url_wa, use_container_width=True)
     st.link_button("📸 Instagram Sekolah", url_ig, use_container_width=True)
-    
+
 # HEADER UTAMA DENGAN LOGO SEKOLAH
 logo_html = f'<img src="{url_logo}" class="hero-logo">' if url_logo else '<span style="font-size:2.5rem;">🎓</span>'
 st.markdown(
@@ -228,8 +228,7 @@ client = genai.Client(api_key=KUNCI_AI)
 # 2. MEMUAT BUKU INGATAN RESMI DARI FILE knowledge_base.md
 info_sekolah = muat_knowledge_base()
 
-# OTOMATIS MENDETEKSI SEMUA MODEL AI YANG TERSEDIA DI AKUN PA WEI
-@st.cache_data(ttl=3600)
+# DAFTAR MODEL AI CEPAT & CADANGAN ANTI-503
 def cari_daftar_model_ai():
     return [
         "gemini-2.5-flash-lite",
@@ -239,22 +238,13 @@ def cari_daftar_model_ai():
         "gemma-3-4b-it",
         "gemma-4-26b-a4b-it"
     ]
-    try:
-        for m in client.models.list():
-            nama = m.name.replace("models/", "")
-            if ("flash" in nama or "gemma" in nama) and "embedding" not in nama and "imagen" not in nama and "veo" not in nama:
-                if nama not in daftar:
-                    daftar.append(nama)
-    except Exception:
-        pass
-    return daftar
 
 # 3. MENYIAPKAN INGATAN OBROLAN
 if "messages" not in st.session_state:
     st.session_state.messages = [
         {
             "role": "assistant",
-            "content": "Assalamu'alaikum!, Sampurasun..., Selamat datang di layanan informasi digital **SMP Negeri 1 Tanjungmedar (NESTAND AKBAR)**. Ada yang bisa saya bantu hari ini? 😊"
+            "content": "Assalamu'alaikum Warahmatullahi Wabarakatuh & Sampurasun! Selamat datang di layanan informasi digital **SMP Negeri 1 Tanjungmedar (NESTAND AKBAR)**. Ada yang bisa saya bantu hari ini? 😊"
         }
     ]
 
@@ -262,7 +252,7 @@ if "messages" not in st.session_state:
 col1, col2, col3, col4 = st.columns(4)
 pertanyaan_tombol = None
 if col1.button("🏫 Profil & Pimpinan", use_container_width=True):
-    pertanyaan_tombol = "Siapa Kepala Sekolah dan Wakasek Kurikulum SMP Negeri 1 Tanjungmedar sekarang, serta di mana alamat lengkapnya?"
+    pertanyaan_tombol = "Siapa Kepala Sekolah dan Wakasek SMP Negeri 1 Tanjungmedar sekarang, serta di mana alamat lengkapnya?"
 if col2.button("📅 Jadwal & Wali Kelas", use_container_width=True):
     pertanyaan_tombol = "Bagaimana jadwal kegiatan harian sekolah dan daftar wali kelas tahun ajaran 2026/2027?"
 if col3.button("💻 Lab & eksKomp", use_container_width=True):
@@ -305,7 +295,6 @@ if pertanyaan:
         for nama_model in semua_model:
             placeholder_jawaban.markdown(f"⚡ *Menghubungkan ke {nama_model}...*")
             try:
-                # Matikan thinking_budget khusus model Gemini 2.5 agar langsung jawab tanpa mikir lama
                 if "gemini-2.5" in nama_model:
                     konfigurasi = types.GenerateContentConfig(
                         system_instruction=info_sekolah,
@@ -343,8 +332,3 @@ if pertanyaan:
             st.session_state.messages.append({"role": "assistant", "content": jawaban_penuh})
         else:
             placeholder_jawaban.error(f"Jalur AI sedang padat sementara. Coba kirim ulang sebentar lagi ya! ({error_terakhir})")
-
-
-
-
-
