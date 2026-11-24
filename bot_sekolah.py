@@ -234,6 +234,9 @@ def cari_daftar_model_ai():
     return [
         "gemini-2.5-flash-lite",
         "gemini-2.5-flash",
+        "gemma-3-27b-it",
+        "gemma-3-12b-it",
+        "gemma-3-4b-it",
         "gemma-4-26b-a4b-it"
     ]
     try:
@@ -332,6 +335,7 @@ if pertanyaan:
             except Exception as e:
                 error_terakhir = str(e)
                 jawaban_penuh = ""
+                time.sleep(1)
                 continue
 
         if jawaban_penuh:
