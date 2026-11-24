@@ -12,14 +12,14 @@ st.set_page_config(
     layout="wide"
 )
 
-# 2. KONEKSI AI DI-CACHE AGAR TIDAK BIKIN KONEKSI ULANG TIAP CHAT
+# 2. KONEKSI AI DI-CACHE AGAR TIDAK MEMBUAT KONEKSI ULANG TIAP CHAT
 @st.cache_resource
 def buat_client_ai():
     return genai.Client(api_key=st.secrets["GEMINI_API_KEY"])
 
 client = buat_client_ai()
 
-# 3. GAMBAR DI-CACHE AGAR TIDAK DIBACA ULANG TIAP KLIK
+# 3. GAMBAR DI-CACHE AGAR HALAMAN RINGAN & CEPAT DIBUKA
 @st.cache_data
 def gambar_ke_base64(nama_dasar):
     for ext in ["png", "jpg", "jpeg", "webp"]:
@@ -31,7 +31,7 @@ def gambar_ke_base64(nama_dasar):
             return f"data:image/{tipe};base64,{data}"
     return None
 
-# 4. BASIS PENGETAHUAN CUKUP BACA DARI knowledge_base.md (TIDAK DOBEL)
+# 4. BASIS PENGETAHUAN DARI knowledge_base.md
 @st.cache_data(ttl=600)
 def muat_knowledge_base():
     instruksi_kecepatan = (
@@ -43,7 +43,26 @@ def muat_knowledge_base():
             return f.read() + instruksi_kecepatan
     return "Kamu adalah Asisten Virtual Resmi SMP Negeri 1 Tanjungmedar (NESTAND AKBAR)." + instruksi_kecepatan
 
-# 5. TAMPILAN GLASSMORPHISM
+# 5. DAFTAR MODEL TERCEPAT + DETEKSI OTOMATIS (DI-CACHE 1 JAM AGAR INSTAN)
+@st.cache_data(ttl=3600)
+def cari_daftar_model_ai():
+    daftar = [
+        "gemini-2.5-flash-lite",
+        "gemini-2.5-flash",
+    ]
+    try:
+        for m in client.models.list():
+            nama = m.name.replace("models/", "")
+            if ("flash" in nama or "gemma" in nama) and not any(
+                x in nama for x in ["embedding", "imagen", "veo", "tts", "audio", "robotics", "computer", "thinking"]
+            ):
+                if nama not in daftar:
+                    daftar.append(nama)
+    except Exception:
+        pass
+    return daftar
+
+# 6. TAMPILAN GLASSMORPHISM
 def pasang_tampilan_mewah():
     url_wallpaper = gambar_ke_base64("wallpaper")
     if url_wallpaper:
@@ -211,14 +230,7 @@ st.markdown(
 )
 
 info_sekolah = muat_knowledge_base()
-
-# DAFTAR MODEL TERCEPAT (TANPA CLIENT.MODELS.LIST YANG BIKIN LAMBAT)
-DAFTAR_MODEL_CEPAT = [
-    "gemini-2.5-flash-lite",
-    "gemini-2.5-flash",
-    "gemini-2.0-flash-lite",
-    "gemini-2.0-flash"
-]
+semua_model = cari_daftar_model_ai()
 
 # INGATAN OBROLAN
 if "messages" not in st.session_state:
@@ -246,6 +258,37 @@ for msg in st.session_state.messages:
     with st.chat_message(msg["role"]):
         st.markdown(msg["content"])
 
+# FUNGSI PERAPI RIWAYAT CHAT (ANTI ERROR PESAN GANDA & SALAM AWAL)
+def susun_riwayat_bersih(pesan_list, untuk_gemma=False):
+    # Ambil maksimal 6 pesan terakhir dan buang pesan 'assistant' di paling awal
+    potongan = list(pesan_list[-6:])
+    while potongan and potongan[0]["role"] == "assistant":
+        potongan.pop(0)
+
+    # Gabungkan pesan berurutan yang perannya sama (misal 'hai' + 'hai')
+    gabungan = []
+    for item in potongan:
+        peran = "user" if item["role"] == "user" else "model"
+        if gabungan and gabungan[-1]["role"] == peran:
+            gabungan[-1]["text"] += "\n" + item["content"]
+        else:
+            gabungan.append({"role": peran, "text": item["content"]})
+
+    # Untuk model Gemma, sisipkan data sekolah ke pesan user pertama
+    if untuk_gemma and gabungan:
+        gabungan[0]["text"] = (
+            f"Gunakan data resmi sekolah berikut untuk menjawab pertanyaan:\n{info_sekolah}\n\n"
+            f"Pertanyaan pengguna: {gabungan[0]['text']}"
+        )
+
+    return [
+        types.Content(
+            role=g["role"],
+            parts=[types.Part.from_text(text=g["text"])]
+        )
+        for g in gabungan
+    ]
+
 # INPUT PERTANYAAN
 pertanyaan_ketik = st.chat_input("Tanyakan seputar SMPN 1 Tanjungmedar...")
 pertanyaan = pertanyaan_tombol if pertanyaan_tombol else pertanyaan_ketik
@@ -255,40 +298,37 @@ if pertanyaan:
     with st.chat_message("user"):
         st.markdown(pertanyaan)
 
-    # Kirim maksimal 6 pesan terakhir saja agar tetap ringan & ngebut
-    riwayat_chat = [
-        types.Content(
-            role="user" if m["role"] == "user" else "model",
-            parts=[types.Part.from_text(text=m["content"])]
-        )
-        for m in st.session_state.messages[-6:]
-    ]
-
     with st.chat_message("assistant"):
         status = st.empty()
         status.markdown("⚡ *Mengetik...*")
         jawaban_penuh = ""
         model_terpakai = ""
+        error_terakhir = ""
 
-        for nama_model in DAFTAR_MODEL_CEPAT:
+        for nama_model in semua_model:
             try:
-                if "gemini-2.5" in nama_model:
+                is_gemma = "gemma" in nama_model.lower()
+                riwayat_kirim = susun_riwayat_bersih(st.session_state.messages, untuk_gemma=is_gemma)
+
+                if is_gemma:
+                    konfigurasi = types.GenerateContentConfig(
+                        temperature=0.3
+                    )
+                elif "2.5" in nama_model:
                     konfigurasi = types.GenerateContentConfig(
                         system_instruction=info_sekolah,
                         temperature=0.3,
-                        max_output_tokens=700,
                         thinking_config=types.ThinkingConfig(thinking_budget=0)
                     )
                 else:
                     konfigurasi = types.GenerateContentConfig(
                         system_instruction=info_sekolah,
-                        temperature=0.3,
-                        max_output_tokens=700
+                        temperature=0.3
                     )
 
                 respon_stream = client.models.generate_content_stream(
                     model=nama_model,
-                    contents=riwayat_chat,
+                    contents=riwayat_kirim,
                     config=konfigurasi
                 )
                 iter_stream = iter(respon_stream)
@@ -308,12 +348,14 @@ if pertanyaan:
                     if jawaban_penuh:
                         model_terpakai = nama_model
                         break
-            except Exception:
-                time.sleep(0.3)
+            except Exception as e:
+                error_terakhir = str(e)
+                if "404" not in error_terakhir and "400" not in error_terakhir:
+                    time.sleep(0.25)
                 continue
 
         if jawaban_penuh:
             st.caption(f"⚡ `{model_terpakai}`")
             st.session_state.messages.append({"role": "assistant", "content": jawaban_penuh})
         else:
-            status.error("Server AI Google sedang sibuk. Silakan coba kirim ulang dalam beberapa detik ya! 🙏")
+            status.error(f"Server AI Google sedang sibuk. Silakan kirim ulang dalam beberapa detik ya! 🙏\n\n`Info teknis: {error_terakhir[:140]}`")
