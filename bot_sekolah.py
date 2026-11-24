@@ -15,6 +15,59 @@ st.set_page_config(
     layout="wide"
 )
 
+# DATA RESMI SEKOLAH (SUDAH DISARING DARI DATA PRIBADI & SENSITIF)
+DATA_SEKOLAH = """
+=== PROFIL RESMI SMP NEGERI 1 TANJUNGMEDAR ===
+- Nama Sekolah: SMP NEGERI 1 TANJUNGMEDAR (NESTAND AKBAR)
+- NPSN: 20208449
+- Jenjang / Status: SMP / Negeri (Kepemilikan: Pemerintah Daerah)
+- Alamat: Jl. Sindangsari No. 10, RT 02 / RW 01, Kelurahan Jingkang, Kec. Tanjungmedar, Kab. Sumedang, Prov. Jawa Barat, Kode Pos 45354
+- Koordinat Geografis: -6.7135 Lintang, 107.8652 Bujur
+- SK Pendirian: 182/Kpts/IMB/SMD/1993 (23 September 1993)
+- SK Izin Operasional: 0260/O/1994 (5 Oktober 1994)
+- Waktu Penyelenggaraan: Pagi / 6 hari
+- Biaya & BOS: Tidak memungut iuran (Rp 0/siswa), menerapkan MBS, dan menerima dana BOS
+- Kontak Resmi Sekolah: Telp 081222605793 | Email: smpntanjungmedar@yahoo.co.id
+- Listrik & Internet: PLN (5.698 Watt) | Akses Internet 50 Mb
+
+=== FASILITAS SANITASI & UKS ===
+- Sumber Air: Sumur terlindungi
+- Tempat Cuci Tangan: 17 unit (semua berfungsi baik, tersedia sabun & air mengalir)
+- Jamban / Toilet: 6 jamban laki-laki dan 6 jamban perempuan (tipe leher angsa, seluruhnya dapat digunakan)
+- Pengelolaan Sampah: Tempat sampah tersedia di setiap kelas, tempat sampah tertutup di jamban perempuan, memiliki TPS tertutup yang diangkut rutin
+- Kemitraan Sanitasi: Pemerintah Daerah, Perusahaan Swasta, Puskesmas, dan Lembaga Non-Pemerintah
+
+=== DAFTAR PENDIDIK DAN TENAGA KEPENDIDIKAN (PTK) ===
+Kepala Sekolah:
+1. Nana Rahayu, S.Pd (L) — PNS | Kepala Sekolah
+
+Wakil Kepala Sekolah & Pimpinan Unit:
+2. Cecep Ridwan, S.Pd (L) — Honor Daerah TK.II | Wakasek Kurikulum | Mengajar: PAI & Budi Pekerti
+3. Diarta, S.Pd (L) — PNS | Wakasek Sarpras | Mengajar: Matematika (Umum)
+4. Entang Purnama, S.Pd, M.M. (P) — PPPK | Wakasek Humas | Mengajar: Bahasa Indonesia
+5. Nunung Nurhayati, S.S. (P) — Honor Daerah TK.II | Kepala Perpustakaan | Mengajar: Bahasa Inggris
+6. Tati Apriliani, A.Ma.Pd, S.Pd (P) — PNS | Koordinator P5 | Mengajar: Bahasa Sunda, P5
+7. Wahyu, S.Pd (L) — PNS | Kepala Lab. Komputer | Mengajar: Informatika, P5
+8. Yana Suryana, A.Ma.Pd (L) — PNS | Kepala Lab. IPA | Mengajar: Ilmu Pengetahuan Alam (IPA)
+9. Romy Dwi Agustian, S.Pd (L) — Guru Honor Sekolah | Pembina Ekstrakurikuler | Mengajar: PJOK, Prakarya
+
+Dewan Guru:
+10. Amar, A.Ma.Pd, S.Pd (L) — PNS | Mengajar: Bahasa Inggris
+11. Ani Rahmawati, S.Sn (P) — PPPK | Mengajar: Seni Musik, Seni dan Budaya
+12. Apong Jubaedah, A.Ma.Pd, S.Pd (P) — PNS | Mengajar: Bahasa Indonesia
+13. Heni Purnamasari, S.Pd (P) — Guru Honor Sekolah | Mengajar: BK (Bimbingan dan Konseling), IPA
+14. Iis Trisnawati, S.Akun (P) — Guru Honor Sekolah | Mengajar: Ilmu Pengetahuan Sosial (IPS)
+15. Indi Fitriyani, S.Sos. (P) — Guru Honor Sekolah | Mengajar: BK (Bimbingan dan Konseling)
+16. Ratnasih, A.Md, S.Pd.I (P) — PPPK | Mengajar: PAI & Budi Pekerti
+17. Yeni Mulyani, S.Sos (P) — PPPK | Mengajar: Pendidikan Pancasila / PPKn
+
+Tenaga Kependidikan:
+18. Ai Rohmayati, S.Sos (P) — Honor Daerah TK.II | Tugas: Bendahara BOS/BOP, Pelaksana PBJ
+19. Ai Rohaeni, S.AP (P) — Tenaga Honor Sekolah
+20. Asep Sopian Bukhori Muslim, S.Kom (L) — Tenaga Honor Sekolah
+21. Asep Suparman (L) — Tenaga Honor Sekolah
+"""
+
 # FUNGSI MEMBACA GAMBAR LOKAL (UNTUK WALLPAPER & LOGO)
 def gambar_ke_base64(nama_dasar):
     for ext in ["png", "jpg", "jpeg"]:
@@ -26,13 +79,14 @@ def gambar_ke_base64(nama_dasar):
             return f"data:image/{tipe};base64,{data}"
     return None
 
-# FUNGSI MEMBACA BASIS PENGETAHUAN DARI FILE knowledge_base.md
+# FUNGSI MEMBACA BASIS PENGETAHUAN DARI knowledge_base.md + DATA_SEKOLAH
 @st.cache_data(ttl=600)
 def muat_knowledge_base():
+    dasar = "Kamu adalah Asisten Virtual Resmi SMP Negeri 1 Tanjungmedar (NESTAND AKBAR)."
     if os.path.exists("knowledge_base.md"):
         with open("knowledge_base.md", "r", encoding="utf-8") as f:
-            return f.read()
-    return "Kamu adalah Asisten Virtual Resmi SMP Negeri 1 Tanjungmedar (NESTAND AKBAR)."
+            dasar = f.read()
+    return f"{dasar}\n\n{DATA_SEKOLAH}"
 
 # FUNGSI TAMPILAN RAMPING + GLASSMORPHISM + WALLPAPER TERBUKA LEGA
 def pasang_tampilan_mewah():
@@ -197,8 +251,7 @@ with st.sidebar:
     st.markdown("---")
     st.markdown("**Bagikan & Media Sosial**")
     
-    # Ganti URL di bawah ini dengan link website Streamlit Pak Wei jika sudah disalin
-    link_app = "https://https://asisten-nestand.streamlit.app"
+    link_app = "https://asisten-nestand.streamlit.app"
     pesan_wa = f"Assalamu'alaikum Wr. Wb. & Sampurasun! Yuk tanya-tanya seputar SMP Negeri 1 Tanjungmedar lewat Asisten Virtual Nestand AKBAR di sini: {link_app}"
     url_wa = f"https://api.whatsapp.com/send?text={pesan_wa.replace(' ', '%20')}"
     url_ig = "https://www.instagram.com/smpn1_tanjungmedar/"
@@ -225,7 +278,7 @@ st.markdown(
 # Menghubungkan ke otak AI Google
 client = genai.Client(api_key=KUNCI_AI)
 
-# 2. MEMUAT BUKU INGATAN RESMI DARI FILE knowledge_base.md
+# 2. MEMUAT BUKU INGATAN RESMI (knowledge_base.md + DATA_SEKOLAH)
 info_sekolah = muat_knowledge_base()
 
 # DAFTAR MODEL AI TERCEPAT + DETEKSI OTOMATIS AKUN PAK WEI
