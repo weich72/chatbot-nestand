@@ -27,6 +27,7 @@ def gambar_ke_base64(nama_dasar):
     return None
 
 # FUNGSI MEMBACA BASIS PENGETAHUAN DARI FILE knowledge_base.md
+@st.cache_data(ttl=600)
 def muat_knowledge_base():
     if os.path.exists("knowledge_base.md"):
         with open("knowledge_base.md", "r", encoding="utf-8") as f:
@@ -230,11 +231,16 @@ info_sekolah = muat_knowledge_base()
 # OTOMATIS MENDETEKSI SEMUA MODEL AI YANG TERSEDIA DI AKUN PA WEI
 @st.cache_data(ttl=3600)
 def cari_daftar_model_ai():
-    daftar = ["gemma-4-26b-a4b-it", "gemini-3.8-flash"]
+    daftar = [
+        "gemini-2.5-flash",
+        "gemini-2.5-flash-lite",
+        "gemini-2.0-flash",
+        "gemma-4-26b-a4b-it"
+    ]
     try:
         for m in client.models.list():
             nama = m.name.replace("models/", "")
-            if ("gemini" in nama or "gemma" in nama) and "embedding" not in nama and "imagen" not in nama and "veo" not in nama:
+            if ("flash" in nama or "gemma" in nama) and "embedding" not in nama and "imagen" not in nama and "veo" not in nama:
                 if nama not in daftar:
                     daftar.append(nama)
     except Exception:
@@ -289,34 +295,41 @@ if pertanyaan:
     semua_model = cari_daftar_model_ai()
 
     with st.chat_message("assistant"):
-        with st.spinner("Sedang berpikir menggunakan otak AI..."):
-            jawaban = None
-            model_terpakai = ""
-            error_terakhir = ""
+        placeholder_jawaban = st.empty()
+        placeholder_jawaban.markdown("⏳ *Menyiapkan jawaban...*")
+        jawaban_penuh = ""
+        model_terpakai = ""
+        error_terakhir = ""
 
-            for nama_model in semua_model:
-                try:
-                    respon = client.models.generate_content(
-                        model=nama_model,
-                        contents=riwayat_chat,
-                        config=types.GenerateContentConfig(
-                            system_instruction=info_sekolah,
-                            temperature=0.4
-                        )
+        for nama_model in semua_model:
+            try:
+                respon_stream = client.models.generate_content_stream(
+                    model=nama_model,
+                    contents=riwayat_chat,
+                    config=types.GenerateContentConfig(
+                        system_instruction=info_sekolah,
+                        temperature=0.4
                     )
-                    jawaban = respon.text
+                )
+                for chunk in respon_stream:
+                    if chunk.text:
+                        jawaban_penuh += chunk.text
+                        placeholder_jawaban.markdown(jawaban_penuh + "▌")
+
+                if jawaban_penuh:
+                    placeholder_jawaban.markdown(jawaban_penuh)
                     model_terpakai = nama_model
                     break
-                except Exception as e:
-                    error_terakhir = str(e)
-                    continue
+            except Exception as e:
+                error_terakhir = str(e)
+                jawaban_penuh = ""
+                continue
 
-            if jawaban:
-                st.markdown(jawaban)
-                st.caption(f"⚡ Dijawab oleh AI: `{model_terpakai}`")
-                st.session_state.messages.append({"role": "assistant", "content": jawaban})
-            else:
-                st.error(f"Jalur AI sedang padat sementara. Coba klik/kirim ulang sebentar lagi ya! ({error_terakhir})")
+        if jawaban_penuh:
+            st.caption(f"⚡ Dijawab oleh AI: `{model_terpakai}`")
+            st.session_state.messages.append({"role": "assistant", "content": jawaban_penuh})
+        else:
+            placeholder_jawaban.error(f"Jalur AI sedang padat sementara. Coba kirim ulang sebentar lagi ya! ({error_terakhir})")
 
 
 
