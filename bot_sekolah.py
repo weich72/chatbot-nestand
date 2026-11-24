@@ -5,95 +5,50 @@ import base64
 import os
 import time
 
-# 1. KUNCI API GOOGLE AI STUDIO (AMAN MENGGUNAKAN SECRETS STREAMLIT)
-KUNCI_AI = st.secrets["GEMINI_API_KEY"]
-
-# Mengatur tampilan halaman web
+# 1. KONFIGURASI HALAMAN
 st.set_page_config(
     page_title="Asisten Virtual Nestand AKBAR",
     page_icon="🎓",
     layout="wide"
 )
 
-# DATA RESMI SEKOLAH (SUDAH DISARING DARI DATA PRIBADI & SENSITIF)
-DATA_SEKOLAH = """
-=== PROFIL RESMI SMP NEGERI 1 TANJUNGMEDAR ===
-- Nama Sekolah: SMP NEGERI 1 TANJUNGMEDAR (NESTAND AKBAR)
-- NPSN: 20208449
-- Jenjang / Status: SMP / Negeri (Kepemilikan: Pemerintah Daerah)
-- Alamat: Jl. Sindangsari No. 10, RT 02 / RW 01, Kelurahan Jingkang, Kec. Tanjungmedar, Kab. Sumedang, Prov. Jawa Barat, Kode Pos 45354
-- Koordinat Geografis: -6.7135 Lintang, 107.8652 Bujur
-- SK Pendirian: 182/Kpts/IMB/SMD/1993 (23 September 1993)
-- SK Izin Operasional: 0260/O/1994 (5 Oktober 1994)
-- Waktu Penyelenggaraan: Pagi / 6 hari
-- Biaya & BOS: Tidak memungut iuran (Rp 0/siswa), menerapkan MBS, dan menerima dana BOS
-- Kontak Resmi Sekolah: Telp - | Email: smpntanjungmedar@yahoo.co.id
-- Listrik & Internet: PLN (5.698 Watt) | Akses Internet 50 Mb
+# 2. KONEKSI AI DI-CACHE AGAR TIDAK BIKIN KONEKSI ULANG TIAP CHAT
+@st.cache_resource
+def buat_client_ai():
+    return genai.Client(api_key=st.secrets["GEMINI_API_KEY"])
 
-=== FASILITAS SANITASI & UKS ===
-- Sumber Air: Sumur terlindungi
-- Tempat Cuci Tangan: 17 unit (semua berfungsi baik, tersedia sabun & air mengalir)
-- Jamban / Toilet: 6 jamban laki-laki dan 6 jamban perempuan (tipe leher angsa, seluruhnya dapat digunakan)
-- Pengelolaan Sampah: Tempat sampah tersedia di setiap kelas, tempat sampah tertutup di jamban perempuan, memiliki TPS tertutup yang diangkut rutin
-- Kemitraan Sanitasi: Pemerintah Daerah, Perusahaan Swasta, Puskesmas, dan Lembaga Non-Pemerintah
+client = buat_client_ai()
 
-=== DAFTAR PENDIDIK DAN TENAGA KEPENDIDIKAN (PTK) ===
-Kepala Sekolah:
-1. Nana Rahayu, S.Pd (L) — PNS | Kepala Sekolah
-
-Wakil Kepala Sekolah & Pimpinan Unit:
-2. Cecep Ridwan, S.Pd (L) — Honor Daerah TK.II | Wakasek Kurikulum | Mengajar: PAI & Budi Pekerti
-3. Diarta, S.Pd (L) — PNS | Wakasek Sarpras | Mengajar: Matematika (Umum)
-4. Entang Purnama, S.Pd, M.M. (P) — PPPK | Wakasek Humas | Mengajar: Bahasa Indonesia
-5. Nunung Nurhayati, S.S. (P) — Honor Daerah TK.II | Kepala Perpustakaan | Mengajar: Bahasa Inggris
-6. Tati Apriliani, A.Ma.Pd, S.Pd (P) — PNS | Koordinator P5 | Mengajar: Bahasa Sunda, P5
-7. Wahyu, S.Pd (L) — PNS | Kepala Lab. Komputer | Mengajar: Informatika, P5
-8. Yana Suryana, A.Ma.Pd (L) — PNS | Kepala Lab. IPA | Mengajar: Ilmu Pengetahuan Alam (IPA)
-9. Romy Dwi Agustian, S.Pd (L) — Guru Honor Sekolah | Pembina Ekstrakurikuler | Mengajar: PJOK, Prakarya
-
-Dewan Guru:
-10. Amar, A.Ma.Pd, S.Pd (L) — PNS | Mengajar: Bahasa Inggris
-11. Ani Rahmawati, S.Sn (P) — PPPK | Mengajar: Seni Musik, Seni dan Budaya
-12. Apong Jubaedah, A.Ma.Pd, S.Pd (P) — PNS | Mengajar: Bahasa Indonesia
-13. Heni Purnamasari, S.Pd (P) — Guru Honor Sekolah | Mengajar: BK (Bimbingan dan Konseling), IPA
-14. Iis Trisnawati, S.Akun (P) — Guru Honor Sekolah | Mengajar: Ilmu Pengetahuan Sosial (IPS)
-15. Indi Fitriyani, S.Sos. (P) — Guru Honor Sekolah | Mengajar: BK (Bimbingan dan Konseling)
-16. Ratnasih, A.Md, S.Pd.I (P) — PPPK | Mengajar: PAI & Budi Pekerti
-17. Yeni Mulyani, S.Sos (P) — PPPK | Mengajar: Pendidikan Pancasila / PPKn
-
-Tenaga Kependidikan:
-18. Ai Rohmayati, S.Sos (P) — Honor Daerah TK.II | Tugas: Bendahara BOS/BOP, Pelaksana PBJ
-19. Ai Rohaeni, S.AP (P) — Tenaga Honor Sekolah
-20. Asep Sopian Bukhori Muslim, S.Kom (L) — Tenaga Honor Sekolah
-21. Asep Suparman (L) — Tenaga Honor Sekolah
-"""
-
-# FUNGSI MEMBACA GAMBAR LOKAL (UNTUK WALLPAPER & LOGO)
+# 3. GAMBAR DI-CACHE AGAR TIDAK DIBACA ULANG TIAP KLIK
+@st.cache_data
 def gambar_ke_base64(nama_dasar):
-    for ext in ["png", "jpg", "jpeg"]:
+    for ext in ["png", "jpg", "jpeg", "webp"]:
         nama_file = f"{nama_dasar}.{ext}"
         if os.path.exists(nama_file):
             with open(nama_file, "rb") as f:
                 data = base64.b64encode(f.read()).decode()
-            tipe = "png" if ext == "png" else "jpeg"
+            tipe = "jpeg" if ext in ["jpg", "jpeg"] else ext
             return f"data:image/{tipe};base64,{data}"
     return None
 
-# FUNGSI MEMBACA BASIS PENGETAHUAN DARI knowledge_base.md + DATA_SEKOLAH
+# 4. BASIS PENGETAHUAN CUKUP BACA DARI knowledge_base.md (TIDAK DOBEL)
 @st.cache_data(ttl=600)
 def muat_knowledge_base():
-    dasar = "Kamu adalah Asisten Virtual Resmi SMP Negeri 1 Tanjungmedar (NESTAND AKBAR)."
+    instruksi_kecepatan = (
+        "\n\nATURAN GAYA JAWABAN: Jawab dengan ramah, akurat, ringkas, dan langsung ke inti "
+        "(maksimal 3-4 paragraf pendek atau poin-poin singkat agar cepat dibaca)."
+    )
     if os.path.exists("knowledge_base.md"):
         with open("knowledge_base.md", "r", encoding="utf-8") as f:
-            dasar = f.read()
-    return f"{dasar}\n\n{DATA_SEKOLAH}"
+            return f.read() + instruksi_kecepatan
+    return "Kamu adalah Asisten Virtual Resmi SMP Negeri 1 Tanjungmedar (NESTAND AKBAR)." + instruksi_kecepatan
 
-# FUNGSI TAMPILAN RAMPING + GLASSMORPHISM + WALLPAPER TERBUKA LEGA
+# 5. TAMPILAN GLASSMORPHISM
 def pasang_tampilan_mewah():
     url_wallpaper = gambar_ke_base64("wallpaper")
     if url_wallpaper:
         bg_css = f"""
-            background-image: linear-gradient(rgba(10, 25, 47, 0.05), rgba(15, 23, 42, 0.12)),
+            background-image: linear-gradient(rgba(10, 25, 47, 0.08), rgba(15, 23, 42, 0.15)),
                               url("{url_wallpaper}");
             background-size: cover;
             background-position: center;
@@ -112,18 +67,13 @@ def pasang_tampilan_mewah():
         header[data-testid="stHeader"] {{
             background: transparent !important;
         }}
-        /* MERAMPINGKAN KONTAINER UTAMA AGAR WALLPAPER TERLIHAT LUAS */
         .block-container {{
             max-width: 720px !important;
             padding-top: 2.2rem !important;
             padding-bottom: 5rem !important;
             margin: 0 auto !important;
         }}
-        /* MERAMPINGKAN KOTAK KETIK PESAN DI BAWAH */
-        div[data-testid="stBottom"] {{
-            background: transparent !important;
-        }}
-        div[data-testid="stBottom"] > div {{
+        div[data-testid="stBottom"], div[data-testid="stBottom"] > div {{
             max-width: 720px !important;
             margin: 0 auto !important;
             background: transparent !important;
@@ -154,10 +104,7 @@ def pasang_tampilan_mewah():
             object-fit: contain;
             filter: drop-shadow(0 4px 10px rgba(0,0,0,0.4));
         }}
-        .hero-text {{
-            text-align: center;
-            width: 100%;
-        }}
+        .hero-text {{ text-align: center; width: 100%; }}
         .hero-title {{
             font-size: 1.55rem;
             font-weight: 800;
@@ -167,11 +114,7 @@ def pasang_tampilan_mewah():
             margin: 0;
             line-height: 1.2;
         }}
-        .hero-sub {{
-            color: #e2e8f0;
-            font-size: 0.86rem;
-            margin-top: 2px;
-        }}
+        .hero-sub {{ color: #e2e8f0; font-size: 0.86rem; margin-top: 2px; }}
         .hero-badge {{
             display: inline-block;
             margin-top: 6px;
@@ -183,7 +126,6 @@ def pasang_tampilan_mewah():
             font-size: 0.75rem;
             font-weight: 600;
         }}
-        /* GELEMBUNG CHAT RAMPING & TRANSPARAN ELEGAN */
         div[data-testid="stChatMessage"] {{
             background: rgba(15, 23, 42, 0.74) !important;
             backdrop-filter: blur(10px);
@@ -195,7 +137,6 @@ def pasang_tampilan_mewah():
             max-width: 88%;
             box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
         }}
-        /* PESAN USER OTOMATIS RATA KANAN SEPERTI WHATSAPP */
         div[data-testid="stChatMessage"]:has(div[data-testid="chatAvatarIcon-user"]) {{
             margin-left: auto;
             background: rgba(30, 58, 138, 0.78) !important;
@@ -207,7 +148,6 @@ def pasang_tampilan_mewah():
             border-radius: 14px;
             border: 1px solid rgba(56, 189, 248, 0.5);
         }}
-        /* TOMBOL CEPAT LEBIH COMPACT */
         div.stButton > button {{
             background: rgba(15, 23, 42, 0.75) !important;
             backdrop-filter: blur(8px);
@@ -229,16 +169,13 @@ def pasang_tampilan_mewah():
 pasang_tampilan_mewah()
 url_logo = gambar_ke_base64("logo")
 
-# PANEL SAMPING (SIDEBAR) DENGAN LOGO & PROFIL SEKOLAH
+# SIDEBAR
 with st.sidebar:
     if url_logo:
         st.markdown(f'<div style="text-align:center;"><img src="{url_logo}" width="90"></div>', unsafe_allow_html=True)
     st.markdown("<h3 style='text-align:center; margin-bottom:0;'>SMPN 1 Tanjungmedar</h3>", unsafe_allow_html=True)
     st.markdown("<p style='text-align:center; color:#7dd3fc;'><b>NESTAND AKBAR</b> • Kab. Sumedang</p>", unsafe_allow_html=True)
     st.info("🎓 *Aktif • Kreatif • Bersama • Adab • Religius*")
-    st.markdown("---")
-    st.markdown("**Visi Sekolah: NESTAND AKBAR**")
-    st.caption("• **AKBAR:** Aktif, Kreatif, Bersama, Adab, Religius")
     st.markdown("---")
     if st.button("🗑️ Bersihkan Obrolan", use_container_width=True):
         st.session_state.messages = [
@@ -250,16 +187,14 @@ with st.sidebar:
         st.rerun()
     st.markdown("---")
     st.markdown("**Bagikan & Media Sosial**")
-    
     link_app = "https://asisten-nestand.streamlit.app"
     pesan_wa = f"Assalamu'alaikum Wr. Wb. & Sampurasun! Yuk tanya-tanya seputar SMP Negeri 1 Tanjungmedar lewat Asisten Virtual Nestand AKBAR di sini: {link_app}"
     url_wa = f"https://api.whatsapp.com/send?text={pesan_wa.replace(' ', '%20')}"
     url_ig = "https://www.instagram.com/smpn1_tanjungmedar/"
-
     st.link_button("📲 Bagikan ke WhatsApp", url_wa, use_container_width=True)
     st.link_button("📸 Instagram Sekolah", url_ig, use_container_width=True)
 
-# HEADER UTAMA DENGAN LOGO SEKOLAH
+# HEADER UTAMA
 logo_html = f'<img src="{url_logo}" class="hero-logo">' if url_logo else '<span style="font-size:2.5rem;">🎓</span>'
 st.markdown(
     f"""
@@ -275,35 +210,17 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# Menghubungkan ke otak AI Google
-client = genai.Client(api_key=KUNCI_AI)
-
-# 2. MEMUAT BUKU INGATAN RESMI (knowledge_base.md + DATA_SEKOLAH)
 info_sekolah = muat_knowledge_base()
 
-# DAFTAR MODEL AI TERCEPAT + DETEKSI OTOMATIS AKUN PAK WEI
-@st.cache_data(ttl=3600)
-def cari_daftar_model_ai():
-    # Urutan prioritas utama yang terbukti paling cepat & aktif
-    daftar = [
-        "gemma-4-26b-a4b-it",
-        "gemini-2.5-flash-lite",
-        "gemini-2.5-flash"
-    ]
-    # Otomatis menambahkan model resmi lain yang benar-benar tersedia di API Key Pak Wei
-    try:
-        for m in client.models.list():
-            nama = m.name.replace("models/", "")
-            if ("gemma" in nama or "flash" in nama) and not any(
-                x in nama for x in ["embedding", "imagen", "veo", "tts", "audio", "robotics", "computer"]
-            ):
-                if nama not in daftar:
-                    daftar.append(nama)
-    except Exception:
-        pass
-    return daftar
+# DAFTAR MODEL TERCEPAT (TANPA CLIENT.MODELS.LIST YANG BIKIN LAMBAT)
+DAFTAR_MODEL_CEPAT = [
+    "gemini-2.5-flash-lite",
+    "gemini-2.5-flash",
+    "gemini-2.0-flash-lite",
+    "gemini-2.0-flash"
+]
 
-# 3. MENYIAPKAN INGATAN OBROLAN
+# INGATAN OBROLAN
 if "messages" not in st.session_state:
     st.session_state.messages = [
         {
@@ -312,24 +229,24 @@ if "messages" not in st.session_state:
         }
     ]
 
-# TOMBOL PERTANYAAN CEPAT (QUICK PROMPTS)
+# TOMBOL PERTANYAAN CEPAT
 col1, col2, col3, col4 = st.columns(4)
 pertanyaan_tombol = None
 if col1.button("🏫 Profil & Pimpinan", use_container_width=True):
     pertanyaan_tombol = "Siapa Kepala Sekolah dan Wakasek SMP Negeri 1 Tanjungmedar sekarang, serta di mana alamat lengkapnya?"
-if col2.button("📅 Jadwal & Wali Kelas", use_container_width=True):
-    pertanyaan_tombol = "Bagaimana jadwal kegiatan harian sekolah dan daftar wali kelas tahun ajaran 2026/2027?"
-if col3.button("💻 Lab & eksKomp", use_container_width=True):
-    pertanyaan_tombol = "Apa saja fasilitas Laboratorium Komputer dan program ekstrakurikuler eksKomp Nestand?"
-if col4.button("📚 Materi Informatika", use_container_width=True):
-    pertanyaan_tombol = "Apa saja peta materi pelajaran Informatika untuk Kelas VII, VIII, dan IX?"
+if col2.button("🌟 Program Unggulan", use_container_width=True):
+    pertanyaan_tombol = "Apa saja program unggulan dan ekstrakurikuler di SMP Negeri 1 Tanjungmedar?"
+if col3.button("👩‍🏫 Daftar Guru & Staf", use_container_width=True):
+    pertanyaan_tombol = "Siapa saja daftar guru dan tenaga kependidikan di SMP Negeri 1 Tanjungmedar?"
+if col4.button("🏢 Fasilitas Sekolah", use_container_width=True):
+    pertanyaan_tombol = "Apa saja fasilitas laboratorium, ruang belajar, dan sarana prasarana di SMP Negeri 1 Tanjungmedar?"
 
-# Menampilkan riwayat obrolan di layar
+# TAMPILKAN RIWAYAT OBROLAN
 for msg in st.session_state.messages:
     with st.chat_message(msg["role"]):
         st.markdown(msg["content"])
 
-# Menangkap input dari ketikan manual ATAU klik tombol cepat
+# INPUT PERTANYAAN
 pertanyaan_ketik = st.chat_input("Tanyakan seputar SMPN 1 Tanjungmedar...")
 pertanyaan = pertanyaan_tombol if pertanyaan_tombol else pertanyaan_ketik
 
@@ -338,67 +255,65 @@ if pertanyaan:
     with st.chat_message("user"):
         st.markdown(pertanyaan)
 
-    riwayat_chat = []
-    for m in st.session_state.messages:
-        peran = "user" if m["role"] == "user" else "model"
-        riwayat_chat.append(
-            types.Content(
-                role=peran,
-                parts=[types.Part.from_text(text=m["content"])]
-            )
+    # Kirim maksimal 6 pesan terakhir saja agar tetap ringan & ngebut
+    riwayat_chat = [
+        types.Content(
+            role="user" if m["role"] == "user" else "model",
+            parts=[types.Part.from_text(text=m["content"])]
         )
-
-    semua_model = cari_daftar_model_ai()
+        for m in st.session_state.messages[-6:]
+    ]
 
     with st.chat_message("assistant"):
-        placeholder_jawaban = st.empty()
+        status = st.empty()
+        status.markdown("⚡ *Mengetik...*")
         jawaban_penuh = ""
         model_terpakai = ""
-        error_terakhir = ""
 
-        # Maksimal 2 putaran jika semua jalur sempat sibuk sesaat
-        for putaran in range(2):
-            for nama_model in semua_model:
-                placeholder_jawaban.markdown(f"⚡ *Menyiapkan jawaban ({nama_model})...*")
-                try:
-                    if "gemini-2.5" in nama_model:
-                        konfigurasi = types.GenerateContentConfig(
-                            system_instruction=info_sekolah,
-                            temperature=0.4,
-                            thinking_config=types.ThinkingConfig(thinking_budget=0)
-                        )
-                    else:
-                        konfigurasi = types.GenerateContentConfig(
-                            system_instruction=info_sekolah,
-                            temperature=0.4
-                        )
-
-                    respon_stream = client.models.generate_content_stream(
-                        model=nama_model,
-                        contents=riwayat_chat,
-                        config=konfigurasi
+        for nama_model in DAFTAR_MODEL_CEPAT:
+            try:
+                if "gemini-2.5" in nama_model:
+                    konfigurasi = types.GenerateContentConfig(
+                        system_instruction=info_sekolah,
+                        temperature=0.3,
+                        max_output_tokens=700,
+                        thinking_config=types.ThinkingConfig(thinking_budget=0)
                     )
-                    for chunk in respon_stream:
-                        if chunk.text:
-                            jawaban_penuh += chunk.text
-                            placeholder_jawaban.markdown(jawaban_penuh + "▌")
+                else:
+                    konfigurasi = types.GenerateContentConfig(
+                        system_instruction=info_sekolah,
+                        temperature=0.3,
+                        max_output_tokens=700
+                    )
 
+                respon_stream = client.models.generate_content_stream(
+                    model=nama_model,
+                    contents=riwayat_chat,
+                    config=konfigurasi
+                )
+                iter_stream = iter(respon_stream)
+                chunk_pertama = next(iter_stream, None)
+
+                if chunk_pertama is not None:
+                    status.empty()
+
+                    def pengalir_teks():
+                        if chunk_pertama.text:
+                            yield chunk_pertama.text
+                        for chunk in iter_stream:
+                            if chunk.text:
+                                yield chunk.text
+
+                    jawaban_penuh = st.write_stream(pengalir_teks())
                     if jawaban_penuh:
-                        placeholder_jawaban.markdown(jawaban_penuh)
                         model_terpakai = nama_model
                         break
-                except Exception as e:
-                    error_terakhir = str(e)
-                    jawaban_penuh = ""
-                    # Kalau error 404 (model tidak didukung), langsung lompat tanpa nunggu
-                    if "404" not in error_terakhir:
-                        time.sleep(1.5)
-                    continue
-            if jawaban_penuh:
-                break
+            except Exception:
+                time.sleep(0.3)
+                continue
 
         if jawaban_penuh:
-            st.caption(f"⚡ Dijawab oleh AI: `{model_terpakai}`")
+            st.caption(f"⚡ `{model_terpakai}`")
             st.session_state.messages.append({"role": "assistant", "content": jawaban_penuh})
         else:
-            placeholder_jawaban.error("Server AI Google sedang sangat padat di jam sibuk ini. Tunggu 5 detik lalu klik tombol atau kirim ulang pertanyaan ya, Pak Wei! 🙏")
+            status.error("Server AI Google sedang sibuk. Silakan coba kirim ulang dalam beberapa detik ya! 🙏")
