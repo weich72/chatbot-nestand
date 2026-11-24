@@ -1,167 +1,158 @@
-# KNOWLEDGE BASE RESMI: SMP NEGERI 1 TANJUNGMEDAR (NESTAND AKBAR)
+# BASIS PENGETAHUAN RESMI (KNOWLEDGE BASE)
+# ASISTEN VIRTUAL NESTAND AKBAR — SMP NEGERI 1 TANJUNGMEDAR
 
-> **Catatan Sistem untuk Chatbot:** Dokumen ini adalah basis pengetahuan induk resmi SMP Negeri 1 Tanjungmedar (NESTAND AKBAR). Gunakan data di bawah ini sebagai referensi utama dalam menjawab pertanyaan siswa, guru, maupun pengunjung terkait profil sekolah, tata kelola, jadwal, laboratorium komputer, ekstrakurikuler, dan mata pelajaran Informatika.
-
----
-
-## 1. Profil Institusi dan Identitas Sekolah
-
-**SMP Negeri 1 Tanjungmedar** (disingkat **NESTAND**) merupakan satuan pendidikan menengah pertama negeri yang berlokasi di kawasan pedesaan perbukitan, Kabupaten Sumedang, Jawa Barat. Meskipun berada di wilayah pinggiran dengan tantangan keterbatasan kepemilikan perangkat komputer pribadi siswa di rumah, sekolah ini berkomitmen penuh melakukan percepatan literasi digital agar kualitas siswanya setara dengan sekolah di perkotaan.
-
-* **Nama Satuan Pendidikan:** SMP Negeri 1 Tanjungmedar
-* **Alamat Lengkap:** Jalan Sindangsari No. 10 Jingkang, Kecamatan Tanjungmedar, Kabupaten Sumedang, Kode Pos 45354
-* **Website Resmi:** `smpn1tanjungmedar.sch.id`
-* **Email Resmi Sekolah:** `smpntanjungmedar@yahoo.co.id`
-* **Kepala Sekolah:** Bapak Nana Rahayu, S.Pd. (NIP. 19691208 199802 XXXX) *(laki-laki, wajib disapa dengan sebutan "Bapak", jangan pernah disebut Ibu)*
-  - **Wakil Kepala Sekolah (Wakasek):**
-  - **Wakasek Kurikulum:** Cecep Ridwan, S.Pd. (NIP. 19920524 202521 XXXX) 
-  - **Wakasek Kesiswaan:** Bapak Amar, S.Pd. *(laki-laki, wajib disapa "Bapak")*
-  - **Wakasek Sarana dan Prasarana:** Bapak Diarta, S.Pd. *(laki-laki, wajib disapa "Bapak")*
-  - **Wakasek Hubungan Masyarakat (Humas):** Ibu Entang Purnama, S.Pd., M.M. *(Perempuan, wajib disapa "Ibu")*
-* **Kepala Lab Komputer & Guru Informatika:** Wahyu, S.Pd. (NIP. 19720229 199203 XXXX)
-* **Populasi & Rombongan Belajar (Rombel):** Sekitar 250–300 peserta didik yang terbagi ke dalam **10 rombongan belajar**:
-  * **Kelas VII:** VII-A, VII-B, VII-C, VII-D
-  * **Kelas VIII:** VIII-A, VIII-B, VIII-C
-  * **Kelas IX:** IX-A, IX-B, IX-C
-* **Jargon & Nilai Utama Sekolah:** **NESTAND AKBAR** (**N**egeri **S**atu **Tan**jungme**d**ar **A**ktif, **K**reatif, **B**ersama, **A**dab, dan **R**eligius). *(Catatan: Jargon lama seperti "Nestand Genius" dan "Mencrang" sudah tidak digunakan dan digantikan sepenuhnya oleh visi Nestand Akbar).*
-* **Filosofi Pendidikan Karakter:** Selaras dengan nilai **Adab** dan **Religius**, sekolah menegakkan prinsip *"adab dikedepankan daripada ilmu"* serta mengintegrasikan dimensi Profil Pelajar Pancasila dalam seluruh ekosistem pembelajaran.
+## 1. PERAN & ATURAN KOMUNIKASI ASISTEN VIRTUAL
+- Kamu adalah **Asisten Virtual Resmi SMP Negeri 1 Tanjungmedar (NESTAND AKBAR)**.
+- Sapa pengguna dengan ramah, sopan, dan santun khas Jawa Barat (gunakan salam seperti *Assalamu'alaikum Warahmatullahi Wabarakatuh* dan *Sampurasun* saat menyapa di awal percakapan).
+- Jawab pertanyaan siswa, orang tua, guru, maupun masyarakat secara akurat, jelas, terstruktur, dan ringkas berdasarkan data resmi sekolah di bawah ini.
+- **Aturan Privasi & Keamanan:** Jangan pernah memberikan atau menebak data pribadi sensitif seperti NIK, NIP, tanggal lahir, alamat rumah pribadi, nomor telepon pribadi guru/staf, maupun detail keamanan ruang sekolah. Jika ditanya informasi yang belum tersedia di basis pengetahuan ini, sampaikan dengan sopan agar penanya dapat menanyakannya langsung ke bagian Tata Usaha (TU) atau Humas SMP Negeri 1 Tanjungmedar pada jam kerja sekolah.
 
 ---
 
-## 2. Struktur Tenaga Pendidik, Wali Kelas, dan Tata Usaha (TA 2026/2027)
-
-### A. Daftar Guru Pengampu dan Kode Mengajar
-| Kode | Nama Guru | Mata Pelajaran / Tugas |
-| :--- | :--- | :--- |
-| **1** | Nana Rahayu, S.Pd. | Kepala Sekolah |
-| **2 / 2.a** | Apong Jubaedah, S.Pd. | Bahasa Indonesia & Kokurikuler |
-| **3** | Amar, S.Pd. | Bahasa Inggris |
-| **4** | Diarta, S.Pd. | Matematika |
-| **5** | Wahyu, S.Pd. | Informatika |
-| **6 / 6.a** | Tati Apriliani, S.Pd. | Bahasa Sunda & Kokurikuler |
-| **7** | Yana Suryana, A.Md. | Ilmu Pengetahuan Alam (IPA) |
-| **8 / 8.a** | Ratnasih, S.Pd.I. | Pendidikan Agama Islam (PAI) & Kokurikuler |
-| **9** | Ani Rahmawati, S.Sn. | Seni |
-| **10 / 10.a** | Entang Purnama, S.Pd., M.M. | Bahasa Indonesia & Kokurikuler |
-| **11** | Yeni Mulyani, S.Sos. | Pendidikan Pancasila |
-| **12 / 12.a** | Nunung Nurhayati, S.S. | Bahasa Inggris & Kokurikuler |
-| **13 / 13.a** | Cecep Ridwan, S.Pd. | Pendidikan Agama Islam (PAI) & Kokurikuler |
-| **14 / 14.a** | Heni Purnamasari, S.Pd. | Matematika & Kokurikuler |
-| **15** | Romy Dwi A., S.Pd. | Pendidikan Jasmani, Olahraga, dan Kesehatan (PJOK) |
-| **16 / 16.a** | Iis Trisnawati, S.Ak. | Ilmu Pengetahuan Sosial (IPS) & Kokurikuler |
-| **17 / 17.a** | Indi Fitriyani, S.Sos. | Ilmu Pengetahuan Alam (IPA) & Kokurikuler |
-| **18 / 18.a** | Agus Cahyadi, S.Pd. | Pendidikan Agama Islam (PAI) & IPS |
-| **19 / 19.a / 19.b** | Firdaus Rahayu, S.Pd. | PJOK, Pendidikan Pancasila & Kokurikuler |
-
-### B. Daftar Wali Kelas
-* **Kelas VII-A:** Heni Purnamasari, S.Pd.
-* **Kelas VII-B:** Iis Trisnawati, S.Ak.
-* **Kelas VII-C:** Nunung Nurhayati, S.S.
-* **Kelas VII-D:** Yeni Mulyani, S.Sos.
-* **Kelas VIII-A:** Apong Jubaedah, S.Pd.
-* **Kelas VIII-B:** Ani Rahmawati, S.Sn.
-* **Kelas VIII-C:** Ratnasih, S.Pd.I.
-* **Kelas IX-A:** Tati Apriliani, S.Pd.
-* **Kelas IX-B:** Yana Suryana, A.Md.
-* **Kelas IX-C:** Wahyu, S.Pd.
-
-### C. Staf Tata Usaha (TU)
-* **Ai Rohmayati, S.Sos.** (Kode A) — Bendahara
-* **Asep Sopian B.M., S.Kom.** (Kode B) — Operator Sekolah (OPS)
-* **Ai Rohaeni, S.A.P.** (Kode C) — Staf Tata Usaha
-* **Asep Suparman** (Kode D) — Staf Tata Usaha
-* **Dadan Sunandar** (Kode E) — Staf Tata Usaha
-* **Ai Siti Nurjanah** (Kode F) — Staf Tata Usaha
+## 2. PROFIL & IDENTITAS SEKOLAH
+- **Nama Sekolah:** SMP Negeri 1 Tanjungmedar (NESTAND)
+- **NPSN:** 20208449
+- **Jenjang / Status:** SMP / Negeri (Kepemilikan: Pemerintah Daerah)
+- **Akreditasi:** Predikat **A** (SK BAN-S/M No. 02.00/534/BAP-SM/XI/2010 tanggal 9 November 2010)
+- **Alamat Lengkap:** Jl. Sindangsari No. 10, RT 02 / RW 01, Desa Jingkang, Kecamatan Tanjungmedar, Kabupaten Sumedang, Provinsi Jawa Barat, Kode Pos 45354
+- **Posisi Geografis:** Lintang -6.7135, Bujur 107.8652
+- **Akses Lokasi:** Berada di pinggir jalan besar dekat pusat pemerintahan Desa Jingkang, dapat diakses kendaraan roda dua maupun roda empat, serta dilalui jalur Angkutan Umum Perkotaan 09 (Sumedang–Cisumur) secara tidak langsung.
+- **SK Pendirian Sekolah:** 182/Kpts/IMB/SMD/1993 (Tanggal 23 September 1993)
+- **SK Izin Operasional:** 0260/O/1994 (Tanggal 5 Oktober 1994)
+- **Waktu Penyelenggaraan:** Pagi / 6 hari sekolah (Senin–Sabtu)
+- **Biaya Pendidikan & BOS:** Sekolah menerapkan Manajemen Berbasis Sekolah (MBS), menerima dana BOS, dan **tidak memungut iuran** dari siswa (Rp 0/siswa).
+- **Kurikulum yang Digunakan:** Kurikulum Merdeka (Kelas VII dan VIII) serta Kurikulum 2013 (Kelas IX).
+- **Kriteria Ketuntasan Minimal (KKM):** 75 untuk seluruh mata pelajaran.
+- **Daya Listrik & Internet:** PLN (5.698 Watt) dan akses internet berkecepatan 50 Mb.
 
 ---
 
-## 3. Budaya Sekolah & Jadwal Pelajaran Semester I (TA 2026/2027)
-
-Kegiatan Belajar Mengajar (KBM) dilaksanakan selama 5 hari kerja (Senin–Jumat) dengan durasi 40 menit per jam pelajaran, dipadukan dengan program pembiasaan karakter dan **GSBS (Gerakan Sekolah Bebas Sampah)**:
-
-* **Senin:** Upacara Bendera (07.00–08.00), dilanjutkan KBM Jam ke-1 s.d. ke-8 hingga pukul 14.15.
-* **Selasa:** Salat Duha & GSBS (07.00–07.30), dilanjutkan KBM Jam ke-1 s.d. ke-9 hingga pukul 14.15.
-* **Rabu:** GSBS & Bimbingan Perwalian (07.00–07.30), dilanjutkan KBM Jam ke-1 s.d. ke-9 hingga pukul 14.15.
-* **Kamis:** Senam Anak Indonesia Hebat & GSBS (07.00–07.30), dilanjutkan KBM Jam ke-1 s.d. ke-9 hingga pukul 14.15.
-* **Jumat:** KBM Jam ke-1 s.d. ke-6 (07.00–11.20), Salat Jumat / Keputrian (11.20–12.15), serta Ekstrakurikuler / Kepramukaan (12.15–13.15).
-* **Jeda Rutin Harian (Senin–Kamis):**
-  * **Istirahat / Program MBG (Makan Bergizi Gratis):** Pukul 09.30–10.00 (khusus Senin pukul 09.20–09.55).
-  * **Salat Zuhur Berjamaah:** Pukul 12.00–12.15 (khusus Senin pukul 11.55–12.15).
-
-### Jadwal Mengajar Mata Pelajaran Informatika (Wahyu, S.Pd. — Kode 5)
-* **Senin:** Kelas VII-D (Jam ke-3–5), Kelas VIII-B (Jam ke-6–8)
-* **Selasa:** Kelas IX-A (Jam ke-1–3), Kelas VII-C (Jam ke-7–9)
-* **Rabu:** Kelas VII-A (Jam ke-1–3), Kelas VIII-A (Jam ke-4–6), Kelas IX-C (Jam ke-7–9)
-* **Kamis:** Kelas VIII-C (Jam ke-1–3)
-* **Jumat:** Kelas VII-B (Jam ke-1–3), Kelas IX-B (Jam ke-4–6)
+## 3. SEJARAH SINGKAT SMP NEGERI 1 TANJUNGMEDAR
+- SMP Negeri 1 Tanjungmedar berdiri sekitar tahun **1993** dengan nama awal **SMP Negeri 3 Tanjungkerta** (karena saat itu masih masuk wilayah Kecamatan Tanjungkerta).
+- Pada awal berdiri, sekolah masih menginduk ke SMP Negeri 2 Tanjungkerta dan melaksanakan kegiatan belajar mengajar sementara di SD Negeri Jingkang dengan jumlah siswa awal sebanyak 76 orang.
+- Pada tahun kedua, sekolah menempati gedung sendiri di sebelah barat bekas lapang sepak bola Desa Jingkang dengan perkembangan rombongan belajar minimal 3 kelas per jenjang.
+- Setelah pemerintah melakukan pemekaran wilayah Kecamatan Tanjungkerta menjadi Kecamatan Tanjungmedar, nama sekolah resmi berubah menjadi **SMP Negeri 1 Tanjungmedar (NESTAND)**.
+- Peserta didik berasal dari wilayah Desa Jingkang, desa-desa sekitar di Kecamatan Tanjungmedar, hingga kecamatan tetangga seperti Kecamatan Surian.
 
 ---
 
-## 4. Sarana Prasarana & Tata Kelola Laboratorium Komputer
+## 4. VISI, MISI, TUJUAN, & JAMINAN MUTU (GENERASI AKBAR)
+### Visi Sekolah
+> *"Menjadi sekolah unggul yang melahirkan lulusan Aktif, Kreatif, Bersama (kolaboratif), Beradab, Religius (AKBAR)."*
 
-Laboratorium Komputer SMPN 1 Tanjungmedar difungsikan untuk mendukung pembelajaran intrakurikuler, ekstrakurikuler, pengerjaan Platform Merdeka Mengajar (PMM), Asesmen Nasional (ANBK), ajang talenta (O2SN/FLS2SN), hingga layanan *resource sharing* bagi sekolah dasar, PKBM, dan instansi setempat.
+- **Landasan Pacu Generasi AKBAR:** *"Gunakan waktu hemat – Berani bertindak cepat – Berpikir cermat."*
+- **Motivasi Kinerja:** *"Melahir Karya Menggapai Manfaat (giving birth to work reaches benefits)."*
 
-### A. Struktur Pengurus Laboratorium Komputer
-* **Penanggung Jawab:** Nana Rahayu, S.Pd. (Kepala Sekolah)
-* **Kepala Laboratorium:** Wahyu, S.Pd.
-* **Sekretaris:** Cecep Ridwan, S.Pd.
-* **Bendahara:** Ai Rohmayati, S.Sos.
-* **Teknisi:** Asep Sopian B.M., S.Kom.
-* **Peralatan & Kebersihan:** Dadan Sunandar & Asep Suparman
+### Misi Sekolah
+1. Menyelenggarakan proses pembelajaran yang aktif, kreatif, dan inovatif sesuai perkembangan ilmu pengetahuan dan teknologi (termasuk pendekatan *deep learning* / pembelajaran mendalam).
+2. Menumbuhkan budaya kerja sama (kolaboratif) melalui pembelajaran berbasis proyek dan kegiatan sekolah yang melibatkan seluruh warga sekolah.
+3. Menanamkan sikap santun, disiplin, dan beradab melalui pembiasaan perilaku positif di lingkungan sekolah.
+4. Menguatkan nilai-nilai religius melalui pembelajaran dan kegiatan keagamaan yang berkesinambungan.
+5. Membangun kemitraan yang harmonis dengan orang tua, komite sekolah, dan masyarakat untuk mendukung prestasi akademik maupun non-akademik peserta didik.
 
-### B. Ringkasan Infrastruktur & Perangkat Laboratorium
-* **Konektivitas Internet:** Jaringan internet khusus lab berkapasitas **50 Mbps** dan dukungan jaringan utama sekolah **100 Mbps**.
-* **Perangkat Komputasi & Visual:** 20 unit Laptop Asus, 15 unit Chromebook, 2 unit Laptop Admin, 3 unit PC Server, 31 unit CPU P4, 45 unit Monitor LCD, 20 unit Tablet Android, 8 unit Pandroid, 11 unit SmartTV, serta 10 unit Infocus dan 5 layar proyektor.
-* **Perangkat Pendukung & Ruang:** 40 unit Keyboard, 35 unit Mouse, 1 unit Printer Canon G1020, 1 set Alat Studio Mini, 1 unit Mixer Sound, 7 unit Speaker Aktif, 9 unit CCTV, serta 60 set meja dan kursi praktik.
-
-### C. Tata Tertib & Jadwal Piket Laboratorium
-* **Tata Tertib Praktik Siswa:** Siswa wajib berpakaian rapi dan sopan, antre tertib tanpa berebut perangkat, dilarang membawa makanan/minuman ke dalam lab, dilarang menyentuh instalasi listrik atau menginjak kabel di lantai, hanya menjalankan aplikasi sesuai instruksi guru, serta wajib menjaga kebersihan ruangan.
-* **Jadwal Piket Kebersihan Lab:** Dikelola bergilir oleh perwakilan siswa (masing-masing 4 kelompok) setiap hari **Senin (Kelas VII-A)**, **Rabu (Kelas VIII-B)**, dan **Sabtu (Kelas IX-C)**.
+### Jaminan Mutu Lulusan NESTAND
+1. **AMANAH (Sikap):** Memiliki akidah lurus, melaksanakan ibadah dengan benar (shalat berjamaah, Dhuha, dzikir, berdoa), berakhlak mulia, berbakti kepada orang tua dan guru, disiplin, jujur, serta peduli sesama dan lingkungan.
+2. **PRESTATIF (Pengetahuan):** Mampu membaca Al-Qur'an sesuai kaidah tajwid (Literasi Al-Qur'an), berwawasan luas dalam bidang keagamaan dan akademik, mencapai KKM minimal 75, serta berprestasi dalam ajang OSN, O2SN, dan FLS2N.
+3. **KOMPETITIF (Keterampilan):** Memiliki keterampilan hidup (*life skills*), membiasakan konsumsi makanan halal dan sehat, memahami dasar P3K, gemar berolahraga, berbudaya literasi, berjiwa kewirausahaan (*entrepreneurship*), dan terampil mengoperasikan teknologi informasi (IT).
 
 ---
 
-## 5. Program Kerja Ekstrakurikuler Komputer (`eksKomp Nestand`) TA 2026/2027
-
-**`eksKomp Nestand`** merupakan program pengayaan dan percepatan literasi teknologi informasi di luar jam pelajaran reguler yang berlandaskan nilai adab dan religius.
-
-* **Pengurus Program:** Penanggung Jawab (Nana Rahayu, S.Pd.), Ketua Penyelenggara & Pemateri Utama (Wahyu, S.Pd.), Pemateri Pendamping (Cecep Ridwan, S.Pd.), Teknisi (Asep Sopian B.M., S.Kom.), serta Peralatan/Kebersihan (Asep Suparman).
-* **Sasaran Peserta & Kemitraan:**
-  1. Peserta didik SMPN 1 Tanjungmedar (Kelas VII, VIII, dan IX).
-  2. Pendidik dan Tenaga Kependidikan SMPN 1 Tanjungmedar.
-  3. Aparatur dinas/instansi se-Kecamatan Tanjungmedar.
-  4. Program kemitraan pelatihan komputer bagi sekolah dasar/madrasah dan pendidikan kesetaraan sekitar: **SDN Jingkang, SDN Ciburuan, SDN Ciomas, SDN Kamal, SDN Sukatani, MI Gununggeulis, MI Al-Mu’min Pondok, serta Paket B & C PKBM Bina Tani Jingkang**.
-* **Pola & Materi Pelatihan:** Dilaksanakan dalam siklus 3 bulan (12 pertemuan per jenjang; jadwal rutin siswa hari **Rabu** untuk kelas VII–VIII dan **Jumat** untuk kelas VIII–IX). Materi mencakup manajemen *File Explorer*, penguasaan perkantoran (Word, Excel, PowerPoint), Desain Grafis, serta pemanfaatan aplikasi kecerdasan artifisial dan kreatif modern (**Canva, ChatGPT, Gamma, Lumen5, MagicSchool, dan MagicPen**) yang diakhiri simulasi karya literasi digital dan asesmen kompetensi.
-
----
-
-## 6. Kerangka Kurikulum & Peta Materi Informatika (Kelas VII–IX)
-
-Pembelajaran Informatika mengacu pada **Kurikulum Merdeka (Fase D)** dengan pendekatan **Pembelajaran Mendalam (*Deep Learning*)** berbasis *Mindful, Meaningful, dan Joyful Learning* melalui delapan elemen pilar: **Berpikir Komputasional (BK), TIK, Sistem Komputer (SK), Jaringan Komputer dan Internet (JKI), Analisis Data (AD), Algoritma dan Pemrograman (AP), Dampak Sosial Informatika (DSI), dan Praktik Lintas Bidang (PLB)**.
-
-* **Interval Kriteria Ketercapaian Tujuan Pembelajaran (KKTP):**
-  * **0% – 40%:** Belum mencapai ketuntasan (remedial di seluruh bagian).
-  * **41% – 65%:** Belum mencapai ketuntasan (remedial di bagian yang diperlukan).
-  * **66% – 85%:** Sudah mencapai ketuntasan (tidak perlu remedial).
-  * **86% – 100%:** Sudah mencapai ketuntasan (perlu pengayaan).
-
-* **Peta Materi Utama Per Jenjang:**
-  * **Kelas VII:** Pengenalan informatika & keterampilan generik, 4 pilar Berpikir Komputasional (Dekomposisi, Pengenalan Pola, Abstraksi, Algoritma), manajemen file/GUI, etika surel, aplikasi pengolah kata & presentasi, klasifikasi perangkat keras/lunak, konversi bilangan biner, serta dasar jaringan internet & enkripsi sederhana.
-  * **Kelas VIII:** Refleksi keterkaitan elemen informatika (aktivitas *unplugged*), analisis data tabular dan rumus spreadsheet (`SUM`, `AVERAGE`, `IF`, `COUNTIF`, referensi absolut `$`), pemrograman visual berbasis blok (**Scratch/Blockly**, variabel, perulangan, percabangan), serta literasi jejak digital dan keamanan dari *phishing*.
-  * **Kelas IX:** Arsitektur komponen *motherboard*, integrasi aplikasi perkantoran (*Mail Merge*, *Paste Special*), pemanfaatan AI kreatif (*Prompt Engineering* untuk infografis & *mind map*), struktur data (*Tree, Graph, Queue*), modularisasi program (*Function & Procedure*), keamanan siber (*HTTPS, 2FA/OTP, enkripsi, cookie*), serta proyek IoT dan robotika berbasis mikrokontroler **Arduino** (sensor DHT11, LDR, sensor hujan/tanah, dan *Robot Line Follower*).
+## 5. STRUKTUR PIMPINAN & TIM PENGEMBANG SEKOLAH (TPS)
+- **Kepala Sekolah / Penanggung Jawab:** Nana Rahayu, S.Pd.
+- **Ketua Komite Sekolah:** Suganda, S.Pd.
+- **Wakil Kepala Sekolah Bidang Kurikulum (Ketua TPS):** Cecep Ridwan, S.Pd.
+- **Wakil Kepala Sekolah Bidang Kesiswaan:** Amar, S.Pd.
+- **Wakil Kepala Sekolah Bidang Sarana Prasarana:** Diarta, S.Pd.
+- **Wakil Kepala Sekolah Bidang Humas (Sekretaris TPS):** Entang Purnama, S.Pd., M.M.
+- **Bendahara I:** Apong Jubaedah, S.Pd.
+- **Bendahara II:** Ai Rohmayati, S.Sos.
+- **Anggota Tim Pengembang Sekolah:** Wahyu, S.Pd., Romy Dwi Agustian, S.Pd., dan Asep Sopian Bukhori Muslim, S.Kom.
 
 ---
 
-## 7. Ekosistem Aplikasi Digital Sekolah (*Nestand Akbar Quiz Arena*)
+## 6. DAFTAR PENDIDIK DAN TENAGA KEPENDIDIKAN (PTK)
+### Kepala Sekolah & Wakil Kepala Sekolah
+1. **Nana Rahayu, S.Pd.** — Kepala Sekolah (Latar belakang pendidikan: S1 Pendidikan Kewarganegaraan / PPKn)
+2. **Cecep Ridwan, S.Pd.** — Wakil Kepala Sekolah Bidang Kurikulum | Mengajar: Pendidikan Agama Islam dan Budi Pekerti (S1 PAI)
+3. **Diarta, S.Pd.** — Wakil Kepala Sekolah Bidang Sarana Prasarana | Mengajar: Matematika Umum (S1 Matematika)
+4. **Entang Purnama, S.Pd., M.M.** — Wakil Kepala Sekolah Bidang Humas | Mengajar: Bahasa Indonesia (S2 Manajemen Umum)
 
-Untuk mendukung evaluasi pembelajaran interaktif yang ringan di jaringan 50 Mbps tanpa biaya langganan, sekolah mengembangkan aplikasi web mandiri berbasis **Google Sheets** dan **Google Apps Script** (`Kode.gs` & `Index.html`):
+### Dewan Guru & Koordinator Unit
+5. **Amar, A.Ma.Pd., S.Pd.** — Guru Bahasa Inggris (S1 Bahasa Inggris)
+6. **Ani Rahmawati, S.Sn.** — Guru Seni Musik & Seni Budaya (S1 Seni Budaya)
+7. **Apong Jubaedah, A.Ma.Pd., S.Pd.** — Guru Bahasa Indonesia (S1 Bahasa Indonesia)
+8. **Heni Purnamasari, S.Pd.** — Guru Bimbingan dan Konseling (BP/BK) & Ilmu Pengetahuan Alam (IPA) (S1 Matematika)
+9. **Iis Trisnawati, S.Akun.** — Guru Ilmu Pengetahuan Sosial (IPS) (S1 Akuntansi Perpajakan)
+10. **Indi Fitriyani, S.Sos.** — Guru Bimbingan dan Konseling / Konselor (BP/BK) (S1 Bimbingan dan Konseling)
+11. **Nunung Nurhayati, S.S.** — Kepala Perpustakaan | Mengajar: Bahasa Inggris (S1 Bahasa Inggris)
+12. **Ratnasih, A.Md., S.Pd.I.** — Guru Pendidikan Agama Islam dan Budi Pekerti (S1 PAI)
+13. **Romy Dwi Agustian, S.Pd.** — Pembina Ekstrakurikuler | Mengajar: Pendidikan Jasmani, Olahraga, dan Kesehatan (PJOK) & Prakarya (S1 PJOK)
+14. **Tati Apriliani, A.Ma.Pd., S.Pd.** — Koordinator P5 | Mengajar: Bahasa Sunda & Projek Penguatan Profil Pelajar Pancasila (P5)
+15. **Wahyu, S.Pd.** — Kepala Laboratorium Komputer | Mengajar: Informatika & Projek Penguatan Profil Pelajar Pancasila (P5)
+16. **Yana Suryana, A.Ma.Pd.** — Kepala Laboratorium IPA | Mengajar: Ilmu Pengetahuan Alam (IPA)
+17. **Yeni Mulyani, S.Sos.** — Guru Pendidikan Pancasila / PPKn
 
-* **Sheet `BANK_SOAL`:** Menyimpan kumpulan soal HOTS dalam 8 kolom standar (`No | Tingkat | Pertanyaan | A | B | C | D | Kunci`) yang memfilter soal secara otomatis sesuai jenjang kelas siswa (`7`, `8`, atau `9`).
-* **Sheet `NILAI_SISWA`:** Merekam riwayat dan skor hasil pengerjaan siswa secara *real-time* dalam 5 kolom otomatis (`Waktu | Nama | Kelas | Skor | Benar`).
+### Tenaga Kependidikan (Tata Usaha & Operasional)
+18. **Ai Rohmayati, S.Sos.** — Bendahara BOS/BOP & Pelaksana Pengadaan Barang/Jasa (PBJ)
+19. **Ai Rohaeni, S.AP.** — Tenaga Administrasi Sekolah (TU)
+20. **Asep Sopian Bukhori Muslim, S.Kom.** — Tenaga Kependidikan / IT & Operator Sekolah (S1 Teknik Informatika Komputer)
+21. **Asep Suparman** — Tenaga Kependidikan / Pelaksana Sekolah
 
 ---
 
-## 8. Pedoman Perilaku & Batasan Keamanan Chatbot
+## 7. DATA PESERTA DIDIK & ROMBONGAN BELAJAR
+- **Total Peserta Didik (Data Pokok):** 277 siswa (143 Laki-laki, 134 Perempuan), 100% beragama Islam.
+  - **Tingkat 7:** 93 siswa (44 Laki-laki, 49 Perempuan)
+  - **Tingkat 8:** 97 siswa (54 Laki-laki, 43 Perempuan)
+  - **Tingkat 9:** 87 siswa (45 Laki-laki, 42 Perempuan)
+- **Daftar Rombongan Belajar (10 Rombel Aktif):**
+  - **Kelas VII (Kurikulum Merdeka):** Kelas 7A, Kelas 7B, Kelas 7C, Kelas 7D
+  - **Kelas VIII (Kurikulum Merdeka):** Kelas 8A, Kelas 8B, Kelas 8C
+  - **Kelas IX (Kurikulum 2013):** Kelas 9A, Kelas 9B, Kelas 9C
+- **Capaian Mutu Siswa:** Tingkat kelulusan mencapai **100%**, angka putus sekolah (*drop out*) **0%**, dan 95% lulusan melanjutkan pendidikan ke jenjang yang lebih tinggi.
 
-1. **Identitas & Nada Komunikasi:** Selalu merepresentasikan **SMP Negeri 1 Tanjungmedar (NESTAND AKBAR)** dengan bahasa yang ramah, sopan, edukatif, sejuk bernuansa religius/Islami, serta memotivasi siswa pedesaan untuk percaya diri menguasai teknologi.
-2. **Kerahasiaan & Privasi Data:** Dilarang keras menampilkan rincian anggaran/pembiayaan sekolah, nomor NIP lengkap pejabat/guru, NIK/NISN siswa, nilai rapor pribadi, nomor telepon pribadi, maupun kata sandi jaringan/server sekolah. Gunakan nama samaran umum (seperti *Udin, Asep, Siti*) jika memberikan contoh simulasi.
-3. **Akurasi Referensi:** Selalu merujuk pada struktur organisasi, jadwal pelajaran, inventaris lab, program `eksKomp Nestand`, dan pemetaan kurikulum tahun ajaran 2026/2027 di atas saat menjawab pertanyaan pengguna.
+---
+
+## 8. PROGRAM UNGGULAN NESTAND & EKSTRAKURIKULER
+### Program Unggulan Sekolah
+1. **FOCUS NESTAND RELIGI:**
+   - Giat **3D Plus** (Shalat Dhuha, Dzikir, dan Shalat Dzuhur berjamaah).
+   - Pembacaan Al-Qur'an rutin pada hari Senin setiap dua minggu sekali.
+   - Intensif Tahfidzul Qur'an (ITQ) dan peringatan hari besar Islam.
+   - *Islamic Scout Camp* (ISC) dan **GESTUR** (Gerakan Serempak Tabur Rupiah / pembiasaan infaq).
+2. **HABITAT MEMBACA DAN MENULIS ("Sekolahku Punya Cerita"):**
+   - Program literasi mingguan berupa bedah/review buku secara individu maupun kelompok (maksimal 4 siswa: *host*, moderator, narasumber, teknisi) dan penulisan sinopsis buku secara bergantian dalam Bahasa Indonesia dan Bahasa Inggris.
+3. **MENTORING INTENSIF OLIMPIADE (MIO) & PEMETAAN SISWA:**
+   - Pembinaan siswa berprestasi untuk ajang olimpiade, serta pemetaan gaya belajar, kepribadian, bakat minat, dan kognitif siswa melalui program Guru Wali yang berkoordinasi dengan orang tua/wali.
+4. **PAMERAN KARYA SISWA (MEKAR):**
+   - Diselenggarakan dua kali setahun pada akhir semester ganjil dan genap bertepatan dengan pembagian rapor, menampilkan hasil karya siswa dari seluruh mata pelajaran.
+5. **PENERAPAN KARAKTER & KEWIRAUSAHAAN:**
+   - Pembiasaan pengelolaan **Koperasi Siswa Nestand Akbar (KSNA)**, kantin siswa, ruang kegiatan siswa, dan komunitas **Rumah Ramah Juara**.
+
+### Kegiatan Ekstrakurikuler
+- **Kepanduan & Kesehatan:** Pramuka, Pasukan Pengibar Bendera (Paskibra), Palang Merah Remaja (PMR).
+- **Keagamaan, Akademik & Teknologi:** Baca Tulis Al-Qur'an (BTQ), English Club, Ekstrakurikuler Komputer (eksKomp), Kelompok Ilmiah Remaja (KIR), Kewirausahaan.
+- **Seni & Olahraga:** Karawitan (gamelan), Seni Tari, Apresiasi Seni, Sepak Bola / Futsal, Bola Voli, Bola Basket, dan Bulu Tangkis.
+
+---
+
+## 9. SARANA, PRASARANA, & FASILITAS SANITASI
+- **Ruang Belajar:** 13 ruang kelas (Kelas 7A–7D, 8A–8D, 9A–9E) yang masing-masing dilengkapi 32 meja siswa, 32 kursi siswa, meja-kursi guru, papan tulis, jam dinding, simbol kenegaraan, tempat sampah, dan soket listrik.
+- **Laboratorium & Perpustakaan:**
+  - **Ruang Perpustakaan:** Dilengkapi rak buku, rak majalah/surat kabar, meja & kursi baca, perangkat multimedia, serta sarana belajar inklusif (Braille kit, globe timbul, peta timbul, papan braille, abacus, magnifier lens set).
+  - **Laboratorium IPA:** Dilengkapi 32 meja-kursi praktikum, meja demonstrasi & persiapan, mikroskop monokuler, model anatomi kerangka & organ manusia, alat ukur fisika/kimia, alat pemadam kebakaran, dan kotak P3K.
+  - **Ruang Laboratorium Komputer:** Dilengkapi unit komputer/monitor, proyektor, AC, printer, modem internet, dan papan tulis.
+  - **Laboratorium Bahasa.**
+- **Ruang Pimpinan, Layanan, & Penunjang:**
+  - Ruang Kepala Sekolah, Ruang Wakil Kepala Sekolah, Ruang Guru (dilengkapi proyektor & *access point* Wi-Fi), Ruang Tata Usaha (TU).
+  - Ruang BP/BK dan Ruang Konseling/Asesmen.
+  - Ruang UKS (dilengkapi tempat tidur UKS, tandu, tensimeter, termometer badan, timbangan & pengukur tinggi badan, perlengkapan P3K, dan tempat cuci tangan).
+  - Ruang OSIS, Masjid Sekolah, Kantin Sekolah, Sanggar MGMP, Ruang Keterampilan, dan **Ruang Kesenian** (dilengkapi alat musik tradisional Sunda/karawitan: kendang, kulanter, kecapi, kacapi kawih, jengglong, kenong, kempul, kempur, kemong, kempli, kecer, dan keyboard).
+- **Fasilitas Olahraga & Sanitasi:**
+  - Lapangan Upacara (rumput), Lapangan Olahraga, dan Lapangan Basket.
+  - Sumber air bersih dari sumur terlindungi, **17 titik tempat cuci tangan** dengan sabun dan air mengalir, **12 unit jamban/WC siswa aktif** (6 putra, 6 putri) bertipe leher angsa serta WC guru dan kepala sekolah, tempat sampah di tiap kelas, dan TPS tertutup yang diangkut secara rutin.
+
+---
+
+## 10. DATA TAMBAHAN (OPSIONAL — DAPAT DILENGKAPI DARI FILE LAMA)
+*(Catatan untuk Admin/Operator: Jika pada `knowledge_base.md` lama sudah terdapat bagian **Jadwal Bel/Kegiatan Harian**, **Daftar Wali Kelas Terbaru**, atau **Silabus/Peta Materi Informatika & eksKomp** untuk menjawab tombol cepat di aplikasi, tempelkan bagian tersebut di bawah ini agar tidak terhapus.)*
