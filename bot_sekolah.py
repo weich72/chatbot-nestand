@@ -231,10 +231,9 @@ info_sekolah = muat_knowledge_base()
 # OTOMATIS MENDETEKSI SEMUA MODEL AI YANG TERSEDIA DI AKUN PA WEI
 @st.cache_data(ttl=3600)
 def cari_daftar_model_ai():
-    daftar = [
-        "gemini-2.5-flash",
+    return [
         "gemini-2.5-flash-lite",
-        "gemini-2.0-flash",
+        "gemini-2.5-flash",
         "gemma-4-26b-a4b-it"
     ]
     try:
@@ -296,20 +295,30 @@ if pertanyaan:
 
     with st.chat_message("assistant"):
         placeholder_jawaban = st.empty()
-        placeholder_jawaban.markdown("⏳ *Menyiapkan jawaban...*")
         jawaban_penuh = ""
         model_terpakai = ""
         error_terakhir = ""
 
         for nama_model in semua_model:
+            placeholder_jawaban.markdown(f"⚡ *Menghubungkan ke {nama_model}...*")
             try:
-                respon_stream = client.models.generate_content_stream(
-                    model=nama_model,
-                    contents=riwayat_chat,
-                    config=types.GenerateContentConfig(
+                # Matikan thinking_budget khusus model Gemini 2.5 agar langsung jawab tanpa mikir lama
+                if "gemini-2.5" in nama_model:
+                    konfigurasi = types.GenerateContentConfig(
+                        system_instruction=info_sekolah,
+                        temperature=0.4,
+                        thinking_config=types.ThinkingConfig(thinking_budget=0)
+                    )
+                else:
+                    konfigurasi = types.GenerateContentConfig(
                         system_instruction=info_sekolah,
                         temperature=0.4
                     )
+
+                respon_stream = client.models.generate_content_stream(
+                    model=nama_model,
+                    contents=riwayat_chat,
+                    config=konfigurasi
                 )
                 for chunk in respon_stream:
                     if chunk.text:
