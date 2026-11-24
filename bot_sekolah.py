@@ -228,16 +228,27 @@ client = genai.Client(api_key=KUNCI_AI)
 # 2. MEMUAT BUKU INGATAN RESMI DARI FILE knowledge_base.md
 info_sekolah = muat_knowledge_base()
 
-# DAFTAR MODEL AI CEPAT & CADANGAN ANTI-503
+# DAFTAR MODEL AI TERCEPAT + DETEKSI OTOMATIS AKUN PAK WEI
+@st.cache_data(ttl=3600)
 def cari_daftar_model_ai():
-    return [
+    # Urutan prioritas utama yang terbukti paling cepat & aktif
+    daftar = [
         "gemma-4-26b-a4b-it",
-        "gemma-3-27b-it",
         "gemini-2.5-flash-lite",
-        "gemini-2.5-flash",
-        "gemma-3-12b-it",
-        "gemma-3-4b-it"
+        "gemini-2.5-flash"
     ]
+    # Otomatis menambahkan model resmi lain yang benar-benar tersedia di API Key Pak Wei
+    try:
+        for m in client.models.list():
+            nama = m.name.replace("models/", "")
+            if ("gemma" in nama or "flash" in nama) and not any(
+                x in nama for x in ["embedding", "imagen", "veo", "tts", "audio", "robotics", "computer"]
+            ):
+                if nama not in daftar:
+                    daftar.append(nama)
+    except Exception:
+        pass
+    return daftar
 
 # 3. MENYIAPKAN INGATAN OBROLAN
 if "messages" not in st.session_state:
@@ -292,43 +303,49 @@ if pertanyaan:
         model_terpakai = ""
         error_terakhir = ""
 
-        for nama_model in semua_model:
-            placeholder_jawaban.markdown(f"⚡ *Menghubungkan ke {nama_model}...*")
-            try:
-                if "gemini-2.5" in nama_model:
-                    konfigurasi = types.GenerateContentConfig(
-                        system_instruction=info_sekolah,
-                        temperature=0.4,
-                        thinking_config=types.ThinkingConfig(thinking_budget=0)
-                    )
-                else:
-                    konfigurasi = types.GenerateContentConfig(
-                        system_instruction=info_sekolah,
-                        temperature=0.4
-                    )
+        # Maksimal 2 putaran jika semua jalur sempat sibuk sesaat
+        for putaran in range(2):
+            for nama_model in semua_model:
+                placeholder_jawaban.markdown(f"⚡ *Menyiapkan jawaban ({nama_model})...*")
+                try:
+                    if "gemini-2.5" in nama_model:
+                        konfigurasi = types.GenerateContentConfig(
+                            system_instruction=info_sekolah,
+                            temperature=0.4,
+                            thinking_config=types.ThinkingConfig(thinking_budget=0)
+                        )
+                    else:
+                        konfigurasi = types.GenerateContentConfig(
+                            system_instruction=info_sekolah,
+                            temperature=0.4
+                        )
 
-                respon_stream = client.models.generate_content_stream(
-                    model=nama_model,
-                    contents=riwayat_chat,
-                    config=konfigurasi
-                )
-                for chunk in respon_stream:
-                    if chunk.text:
-                        jawaban_penuh += chunk.text
-                        placeholder_jawaban.markdown(jawaban_penuh + "▌")
+                    respon_stream = client.models.generate_content_stream(
+                        model=nama_model,
+                        contents=riwayat_chat,
+                        config=konfigurasi
+                    )
+                    for chunk in respon_stream:
+                        if chunk.text:
+                            jawaban_penuh += chunk.text
+                            placeholder_jawaban.markdown(jawaban_penuh + "▌")
 
-                if jawaban_penuh:
-                    placeholder_jawaban.markdown(jawaban_penuh)
-                    model_terpakai = nama_model
-                    break
-            except Exception as e:
-                error_terakhir = str(e)
-                jawaban_penuh = ""
-                time.sleep(1)
-                continue
+                    if jawaban_penuh:
+                        placeholder_jawaban.markdown(jawaban_penuh)
+                        model_terpakai = nama_model
+                        break
+                except Exception as e:
+                    error_terakhir = str(e)
+                    jawaban_penuh = ""
+                    # Kalau error 404 (model tidak didukung), langsung lompat tanpa nunggu
+                    if "404" not in error_terakhir:
+                        time.sleep(1.5)
+                    continue
+            if jawaban_penuh:
+                break
 
         if jawaban_penuh:
             st.caption(f"⚡ Dijawab oleh AI: `{model_terpakai}`")
             st.session_state.messages.append({"role": "assistant", "content": jawaban_penuh})
         else:
-            placeholder_jawaban.error(f"Jalur AI sedang padat sementara. Coba kirim ulang sebentar lagi ya! ({error_terakhir})")
+            placeholder_jawaban.error("Server AI Google sedang sangat padat di jam sibuk ini. Tunggu 5 detik lalu klik tombol atau kirim ulang pertanyaan ya, Pak Wei! 🙏")
