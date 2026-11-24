@@ -58,12 +58,12 @@
 ---
 
 ## 5. STRUKTUR PIMPINAN & TIM PENGEMBANG SEKOLAH (TPS)
-- **Kepala Sekolah / Penanggung Jawab:** Nana Rahayu, S.Pd.
+- **Kepala Sekolah / Penanggung Jawab:** Bapak Nana Rahayu, S.Pd.
 - **Ketua Komite Sekolah:** Suganda, S.Pd.
 - **Wakil Kepala Sekolah Bidang Kurikulum (Ketua TPS):** Cecep Ridwan, S.Pd.
 - **Wakil Kepala Sekolah Bidang Kesiswaan:** Amar, S.Pd.
 - **Wakil Kepala Sekolah Bidang Sarana Prasarana:** Diarta, S.Pd.
-- **Wakil Kepala Sekolah Bidang Humas (Sekretaris TPS):** Entang Purnama, S.Pd., M.M.
+- **Wakil Kepala Sekolah Bidang Humas (Sekretaris TPS):** Ibu Entang Purnama, S.Pd., M.M.
 - **Bendahara I:** Apong Jubaedah, S.Pd.
 - **Bendahara II:** Ai Rohmayati, S.Sos.
 - **Anggota Tim Pengembang Sekolah:** Wahyu, S.Pd., Romy Dwi Agustian, S.Pd., dan Asep Sopian Bukhori Muslim, S.Kom.
